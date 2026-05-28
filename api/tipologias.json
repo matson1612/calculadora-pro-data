@@ -1,8 +1,8 @@
 {
   "Janelas de Correr": [
     {
-      "id": "jan_corr_2f_2x",
-      "nome": "Janela de Correr 2 Folhas",
+      "id": "jan_corr_2f",
+      "nome": "Janela de Correr 2 Folhas novo",
       "folhas": 2,
       "espessura": "8mm",
       "refKit": "kit_2_folhas_8mm",
