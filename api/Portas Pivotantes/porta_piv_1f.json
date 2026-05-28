@@ -67,7 +67,7 @@
         {"tipo": "circle", "x": 265, "y": 230, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\" ", "backgroundColor": "#000"},
         {"tipo": "circle", "x": 265, "y": 340, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\" ", "backgroundColor": "#000"},
         {"tipo": "text", "x": 250, "y": 270, "w": 40, "h": 15, "zIndex": 10, "texto": "{ENTRE_FUROS}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\" ", "color": "#000", "fontSize": 14},
-        {"tipo": "dim-v", "x": 250, "y": 345, "w": 10, "h": 90, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\" && \"{FECHADURA}\" != \"MAÇANETA\"", "color": "#38bdf8", "backgroundColor": "transparent", "borderColor": "#38bdf8", "fontSize": 12},
+        {"tipo": "dim-v", "x": 250, "y": 345, "w": 10, "h": 90, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "color": "#38bdf8", "backgroundColor": "transparent", "borderColor": "#38bdf8", "fontSize": 12},
         {"tipo": "text", "x": 240, "y": 270, "w": 40, "h": 15, "zIndex": 10, "texto": "1607", "condicao": "\"{PUXADOR}\" == \"SIMPLES\" ", "color": "#000", "fontSize": 14},
         {"tipo": "circle", "x": 265, "y": 285, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"SIMPLES\" ", "backgroundColor": "#000"},
         {"tipo": "circle", "x": 305, "y": 450, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{TRINCO}\" == \"SIM\"", "backgroundColor": "#000"},
