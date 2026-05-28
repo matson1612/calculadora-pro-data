@@ -1,8 +1,8 @@
 {
-  "versao_geral": 1,
+  "versao_geral": 2,
   "modulos": {
     "tipologias": {
-      "versao": 1
+      "versao": 2
     }
   }
 }
