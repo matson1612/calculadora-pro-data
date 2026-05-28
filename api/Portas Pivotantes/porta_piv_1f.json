@@ -43,7 +43,7 @@
     { "cod": "cantoneira_15mm", "tam": "MAX(0, {H} - 1050)", "qtd": 1, "meta": "Ponto de Fixação Superior" }
   ],
   "projeto_template": {
-    "versao": "2.0",
+    "versao": "3.0",
     "canvas": {"w": 1600, "h": 1200},
     "elementos": [
         {"tipo": "panel-movel", "x": 140, "y": 135, "w": 180, "h": 330, "zIndex": 10, "backgroundColor": "rgba(56, 189, 248, 0.15)", "borderColor": "#38bdf8"},
