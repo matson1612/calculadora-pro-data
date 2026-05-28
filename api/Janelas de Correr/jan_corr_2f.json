@@ -1,0 +1,8 @@
+{
+  "id": "jan_corr_2f",
+  "nome": "Janela de Correr 2 Folhas",
+  "folhas": 2,
+  "espessura": "8mm",
+  "variaveis_calculo": [ ... ],
+  "vidros": [ ... ]
+}
