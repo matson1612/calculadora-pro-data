@@ -1,12 +1,11 @@
 {
-  "versao_geral": 5.4,
+  "versao_geral": 6,
   "mapa_tipologias": {
-    "Janelas de Correr": [
-      "jan_corr_2f.json",
-      "jan_corr_4f.json"
-    ],
-    "Portas Pivotantes": [
-      "porta_piv_1f.json"
-    ]
-  }
+    "Janelas de Correr": ["jan_corr_2f.json", "jan_corr_4f.json"],
+    "Portas Pivotantes": ["porta_piv_1f.json"]
+  },
+  "mapa_tabelas": [
+    "tabela_oficial_2026.json"
+  ],
+  "mapa_vidros_padrao": "regras_vidro_padrao.json"
 }
