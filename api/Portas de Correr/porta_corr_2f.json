@@ -7,7 +7,7 @@
             "opcoes": {
                 "espessura_vidro": ["8mm", "10mm"],
                 "trilho": ["exposto", "embutido"],
-                "puxador": ["simples", "puxador h", "sem puxador"],
+                "puxador": ["puxador h", "sem puxador"],
                 "entre_furos": ["300", "400", "500", "600", "800", "1000", "1200"],
                 "fechadura": ["3530", "sem fechadura"],
                 "trinco": ["não", "sim"],
@@ -19,7 +19,6 @@
             "regras_padrao": {},
             "regras_ferragens": {
                 "trinco_sim": ["trinco_1335", "capuchinho_1038"],
-                "puxador_simples": ["puxador_bola"],
                 "fechadura_3530": ["3530", "3230", "3534"],
                 "numero_roldanas_4": ["roldana_1125", "roldana_1125"],
                 "numero_roldanas_6": ["roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125"]
@@ -77,8 +76,6 @@
                     { "tipo": "text", "x": 130, "y": 280, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_FIX_EXP}", "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 18 },
                     { "tipo": "text", "x": 260, "y": 280, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_MOV_EMB}", "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 18 },
                     { "tipo": "text", "x": 260, "y": 280, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_MOV_EXP}", "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 18 },
-                    { "tipo": "circle", "x": 350, "y": 285, "w": 12, "h": 12, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"SIMPLES\"", "backgroundColor": "#000", "borderColor": "#000" },
-                    { "tipo": "text", "x": 325, "y": 270, "w": 40, "h": 15, "zIndex": 10, "texto": "PUX.", "condicao": "\"{PUXADOR}\" == \"SIMPLES\"", "color": "#000", "fontSize": 12 },
                     { "tipo": "circle", "x": 350, "y": 250, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "backgroundColor": "#000", "borderColor": "#000" },
                     { "tipo": "circle", "x": 350, "y": 320, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "backgroundColor": "#000", "borderColor": "#000" },
                     { "tipo": "dim-v", "x": 330, "y": 255, "w": 10, "h": 65, "zIndex": 10, "texto": "{ENTRE_FUROS}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "color": "#38bdf8", "fontSize": 10 },
