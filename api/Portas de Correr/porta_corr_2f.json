@@ -67,6 +67,8 @@
                 "elementos": [
                     {"tipo": "panel-fixed", "x": 100, "y": 110, "w": 115, "h": 380, "zIndex": 10},
                     {"tipo": "panel-movel", "x": 215, "y": 100, "w": 135, "h": 390, "zIndex": 10},
+                    {"tipo": "text", "x": 100, "y": 115, "w": 115, "h": 15, "zIndex": 10, "texto": "{QTD_FIXA} {TAG_FIXA}", "color": "#fde047", "fontSize": 12},
+                    {"tipo": "text", "x": 215, "y": 105, "w": 135, "h": 15, "zIndex": 10, "texto": "{QTD_MOVEL} {TAG_MOVEL}", "color": "#fde047", "fontSize": 12},
                     {"tipo": "bounding-box", "x": 60, "y": 80, "w": 300, "h": 500, "zIndex": 0, "texto": "ÁREA DE CORTE"},
                     {"tipo": "dim-h", "x": 100, "y": 510, "w": 250, "h": 10, "zIndex": 10, "texto": "Vão Total: {L}"},
                     {"tipo": "dim-v", "x": 75, "y": 100, "w": 10, "h": 390, "zIndex": 10, "texto": "Vão Total: {H}"},
