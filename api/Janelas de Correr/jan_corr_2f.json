@@ -1,76 +1,78 @@
 {
-            "id": "jan_corr_2f",
-            "nome": "Janela de Correr 2 Folhas",
-            "folhas": 2,
-            "espessura": "8mm",
-            "refKit": "kit_2_folhas_8mm",
-            "opcoes": {
-                "trinco": ["não", "sim"],
-                "puxador": ["não", "sim"],
-                "fecho": ["1571", "3532Jm", "sem fecho"]
-            },
-            "regras_padrao": {
-                "trinco": ["não"],
-                "puxador": ["não"],
-                "fecho": ["1571", "3532jm"]
-            },
-            "regras_ferragens": {
-                "trinco_sim": ["trinco_1335", "castanha_1038c"],
-                "puxador_sim": ["puxador_1629j"],
-                "fecho_1571": ["1571"],
-                "fecho_3532jm": ["3532jmva"]
-            },
-            "componentes_composicao": ["acess_de_2f"],
-            "variaveis_calculo": [
-                { "nome": "H_MOV", "formula": "{H} - 25" },
-                { "nome": "L_MOV", "formula": "FLOOR((({L} / 2) + 50) / 50) * 50" },
-                { "nome": "H_FIX", "formula": "{H} - 65" },
-                { "nome": "L_FIX", "formula": "MIN({L_MOV}, ({L} / 2) + (({L} / 2) + 50 - {L_MOV}))" },
-                { "nome": "HFEC", "formula": "ROUND(({H} / 2) - 50)" }
-            ],
-            "vidros": [
-                { "tipo": "Móvel", "isMovel": true, "w": "{L_MOV}", "h": "{H_MOV}", "qtd": 1 },
-                { "tipo": "Fixa", "isMovel": false, "w": "{L_FIX}", "h": "{H_FIX}", "qtd": 1 }
-            ],
-            "perfis": [
-                { "cod": "trilho_8mm", "tam": "{L}", "qtd": 1, "meta": "Trilho Superior" },
-                { "cod": "capa_8mm", "tam": "{L}", "qtd": 1, "meta": "Capa do Trilho" },
-                { "cod": "guia_8mm", "tam": "{L}", "qtd": 1, "meta": "Guia Inferior" },
-                { "cod": "clic_8mm", "tam": "{L}", "qtd": 1, "meta": "Clic de Arremate" },
-                { "cod": "veda_8mm", "tam": "{H}", "qtd": 1, "meta": "Perfil Vedação" },
-                { "cod": "pu8mm", "tam": "{H}", "qtd": 1, "meta": "Perfil PU Lateral Fixa" },
-                { "cod": "pu10mm", "tam": "{H}", "qtd": 1, "meta": "Perfil PU Central" },
-                { "cod": "escovinha_5x7", "tam": "{L}", "qtd": 2, "meta": "Escova Vedação (Larguras)" },
-                { "cod": "escovinha_5x7", "tam": "{H}", "qtd": 1, "meta": "Escova Vedação (Altura)" }
-            ],
-            "projeto_template": {
-                "versao": "2.0",
-                "canvas": {"w": 1600, "h": 1200},
-                "elementos": [
-                    {"tipo": "panel-fixed", "x": 160, "y": 140, "w": 80, "h": 210, "zIndex": 10},
-                    {"tipo": "panel-movel", "x": 240, "y": 130, "w": 100, "h": 220, "zIndex": 10},
-                    {"tipo": "text", "x": 160, "y": 145, "w": 80, "h": 15, "zIndex": 10, "texto": "{QTD_FIXA} {TAG_FIXA}", "color": "#fde047", "fontSize": 12},
-                    {"tipo": "text", "x": 240, "y": 135, "w": 100, "h": 15, "zIndex": 10, "texto": "{QTD_MOVEL} {TAG_MOVEL}", "color": "#fde047", "fontSize": 12},
-                    {"tipo": "circle", "x": 325, "y": 330, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{TRINCO}\" == \"SIM\"", "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
-                    {"tipo": "circle", "x": 310, "y": 210, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"SIM\"", "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
-                    {"tipo": "rect", "x": 325, "y": 200, "w": 15, "h": 37, "zIndex": 10, "condicao": "\"{FECHO}\" != \"SEM FECHO\"", "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
-                    {"tipo": "circle", "x": 245, "y": 135, "w": 10, "h": 10, "zIndex": 10, "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
-                    {"tipo": "circle", "x": 325, "y": 135, "w": 10, "h": 10, "zIndex": 10, "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
-                    {"tipo": "dim-h", "x": 160, "y": 355, "w": 180, "h": 10, "zIndex": 10, "texto": "{L}"},
-                    {"tipo": "dim-v", "x": 145, "y": 135, "w": 10, "h": 215, "zIndex": 10, "texto": "{H}"},
-                    {"tipo": "circle", "x": 310, "y": 135, "w": 10, "h": 10, "zIndex": 10, "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
-                    {"tipo": "circle", "x": 260, "y": 135, "w": 10, "h": 10, "zIndex": 10, "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
-                    {"tipo": "text", "x": 175, "y": 335, "w": 60, "h": 12, "zIndex": 10, "texto": "{L_FIX}", "color": "#f8fafc", "fontSize": 16},
-                    {"tipo": "text", "x": 310, "y": 320, "w": 28, "h": 13, "zIndex": 10, "texto": "335", "condicao": "\"{TRINCO}\" == \"SIM\"", "color": "#f8fafc", "fontSize": 10},
-                    {"tipo": "text", "x": 295, "y": 200, "w": 17, "h": 8, "zIndex": 10, "texto": "1629j", "condicao": "\"{PUXADOR}\" == \"SIM\"", "color": "#f8fafc", "fontSize": 10},
-                    {"tipo": "text", "x": 260, "y": 335, "w": 60, "h": 12, "zIndex": 10, "texto": "{L_MOV}", "color": "#f8fafc", "fontSize": 16},
-                    {"tipo": "text", "x": 280, "y": 140, "w": 20, "h": 10, "zIndex": 10, "texto": "1125", "color": "#f8fafc", "fontSize": 10},
-                    {"tipo": "text", "x": 320, "y": 190, "w": 11, "h": 6, "zIndex": 10, "texto": "571", "condicao": "\"{FECHO}\" == \"1571\"", "color": "#f8fafc", "fontSize": 10},
-                    {"tipo": "text", "x": 145, "y": 230, "w": 49, "h": 12, "zIndex": 10, "texto": "{H_FIX}", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
-                    {"tipo": "text", "x": 220, "y": 225, "w": 60, "h": 12, "zIndex": 10, "texto": "{H_MOV}", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
-                    {"tipo": "text", "x": 305, "y": 190, "w": 29, "h": 6, "zIndex": 10, "texto": "3532jm", "condicao": "\"{FECHO}\" == \"3532jm\"", "color": "#f8fafc", "fontSize": 10},
-                    {"tipo": "text", "x": 305, "y": 275, "w": 50, "h": 7, "zIndex": 10, "texto": "{HFEC}", "condicao": "\"{FECHO}\" != \"SEM FECHO\" || \"{PUXADOR}\" != \"NÃO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 14},
-                    {"tipo": "bounding-box", "x": 125, "y": 120, "w": 220, "h": 260, "zIndex": 0, "texto": "ÁREA DE CORTE"}
-                ]
-            }
-        }
+    "id": "jan_corr_2f",
+    "nome": "Janela de Correr 2 Folhas",
+    "folhas": 2,
+    "espessura": "8mm",
+    "refKit": "kit_2_folhas_8mm",
+    "opcoes": {
+        "trinco": ["não", "sim"],
+        "puxador": ["não", "sim"],
+        "fecho": ["1571", "3532Jm", "sem fecho"]
+    },
+    "regras_padrao": {
+        "trinco": ["não"],
+        "puxador": ["não"],
+        "fecho": ["1571", "3532jm"]
+    },
+    "regras_ferragens": {
+        "trinco_sim": ["trinco_1335", "castanha_1038c"],
+        "puxador_sim": ["puxador_1629j"],
+        "fecho_1571": ["1571"],
+        "fecho_3532jm": ["3532jmva"]
+    },
+    "componentes_composicao": ["acess_de_2f"],
+    "variaveis_calculo": [
+        { "nome": "H_MOV", "formula": "{H} - 25" },
+        { "nome": "L_MOV", "formula": "FLOOR((({L} / 2) + 50) / 50) * 50" },
+        { "nome": "H_FIX", "formula": "{H} - 65" },
+        { "nome": "L_FIX", "formula": "MIN({L_MOV}, ({L} / 2) + (({L} / 2) + 50 - {L_MOV}))" },
+        { "nome": "HFEC", "formula": "ROUND(({H} / 2) - 50)" }
+    ],
+    "vidros": [
+        { "tipo": "Móvel", "isMovel": true, "w": "{L_MOV}", "h": "{H_MOV}", "qtd": 1 },
+        { "tipo": "Fixa", "isMovel": false, "w": "{L_FIX}", "h": "{H_FIX}", "qtd": 1 }
+    ],
+    "perfis": [
+        { "cod": "trilho_8mm", "tam": "{L}", "qtd": 1, "meta": "Trilho Superior" },
+        { "cod": "capa_8mm", "tam": "{L}", "qtd": 1, "meta": "Capa do Trilho" },
+        { "cod": "guia_8mm", "tam": "{L}", "qtd": 1, "meta": "Guia Inferior" },
+        { "cod": "clic_8mm", "tam": "{L}", "qtd": 1, "meta": "Clic de Arremate" },
+        { "cod": "veda_8mm", "tam": "{H}", "qtd": 1, "meta": "Perfil Vedação" },
+        { "cod": "pu8mm", "tam": "{H}", "qtd": 1, "meta": "Perfil PU Lateral Fixa" },
+        { "cod": "pu10mm", "tam": "{H}", "qtd": 1, "meta": "Perfil PU Central" },
+        { "cod": "escovinha_5x7", "tam": "{L}", "qtd": 2, "meta": "Escova Vedação (Larguras)" },
+        { "cod": "escovinha_5x7", "tam": "{H}", "qtd": 1, "meta": "Escova Vedação (Altura)" }
+    ],
+    "projeto_template": {
+        "versao": "2.0",
+        "canvas": {"w": 1600, "h": 1200},
+        "elementos": [
+            {"tipo": "panel-fixed", "x": 160, "y": 140, "w": 80, "h": 210, "zIndex": 10},
+            {"tipo": "panel-movel", "x": 240, "y": 130, "w": 100, "h": 220, "zIndex": 10},
+            {"tipo": "text", "x": 175, "y": 155, "w": 50, "h": 15, "zIndex": 10, "texto": "{QTD_FIXA}", "color": "#fde047", "fontSize": 12},
+            {"tipo": "text", "x": 265, "y": 160, "w": 55, "h": 15, "zIndex": 10, "texto": "{QTD_MOVEL}", "color": "#fde047", "fontSize": 12},
+            {"tipo": "circle", "x": 325, "y": 330, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{TRINCO}\" == \"SIM\"", "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
+            {"tipo": "circle", "x": 310, "y": 210, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"SIM\"", "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
+            {"tipo": "rect", "x": 325, "y": 200, "w": 15, "h": 37, "zIndex": 10, "condicao": "\"{FECHO}\" != \"SEM FECHO\"", "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
+            {"tipo": "circle", "x": 245, "y": 135, "w": 10, "h": 10, "zIndex": 10, "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
+            {"tipo": "circle", "x": 325, "y": 135, "w": 10, "h": 10, "zIndex": 10, "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
+            {"tipo": "dim-h", "x": 160, "y": 355, "w": 180, "h": 10, "zIndex": 10, "texto": "{L}"},
+            {"tipo": "dim-v", "x": 145, "y": 135, "w": 10, "h": 215, "zIndex": 10, "texto": "{H}"},
+            {"tipo": "circle", "x": 310, "y": 135, "w": 10, "h": 10, "zIndex": 10, "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
+            {"tipo": "circle", "x": 260, "y": 135, "w": 10, "h": 10, "zIndex": 10, "backgroundColor": "rgba(148, 163, 184, 0.5)", "borderColor": "#94a3b8", "borderWidth": 2},
+            {"tipo": "text", "x": 175, "y": 335, "w": 60, "h": 12, "zIndex": 10, "texto": "{L_FIX}", "color": "#f8fafc", "fontSize": 16},
+            {"tipo": "text", "x": 310, "y": 320, "w": 28, "h": 13, "zIndex": 10, "texto": "335", "condicao": "\"{TRINCO}\" == \"SIM\"", "color": "#f8fafc", "fontSize": 10},
+            {"tipo": "text", "x": 295, "y": 200, "w": 17, "h": 8, "zIndex": 10, "texto": "1629j", "condicao": "\"{PUXADOR}\" == \"SIM\"", "color": "#f8fafc", "fontSize": 10},
+            {"tipo": "text", "x": 260, "y": 335, "w": 60, "h": 12, "zIndex": 10, "texto": "{L_MOV}", "color": "#f8fafc", "fontSize": 16},
+            {"tipo": "text", "x": 280, "y": 140, "w": 20, "h": 10, "zIndex": 10, "texto": "1125", "color": "#f8fafc", "fontSize": 10},
+            {"tipo": "text", "x": 320, "y": 190, "w": 11, "h": 6, "zIndex": 10, "texto": "571", "condicao": "\"{FECHO}\" == \"1571\"", "color": "#f8fafc", "fontSize": 10},
+            {"tipo": "text", "x": 145, "y": 230, "w": 49, "h": 12, "zIndex": 10, "texto": "{H_FIX}", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
+            {"tipo": "text", "x": 220, "y": 225, "w": 60, "h": 12, "zIndex": 10, "texto": "{H_MOV}", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
+            {"tipo": "text", "x": 305, "y": 190, "w": 29, "h": 6, "zIndex": 10, "texto": "3532jm", "condicao": "\"{FECHO}\" == \"3532jm\"", "color": "#f8fafc", "fontSize": 10},
+            {"tipo": "text", "x": 305, "y": 275, "w": 50, "h": 7, "zIndex": 10, "texto": "{HFEC}", "condicao": "\"{FECHO}\" != \"SEM FECHO\" || \"{PUXADOR}\" != \"NÃO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 14},
+            {"tipo": "bounding-box", "x": 125, "y": 120, "w": 220, "h": 260, "zIndex": 0, "texto": "ÁREA DE CORTE"},
+            {"tipo": "text", "x": 175, "y": 165, "w": 50, "h": 15, "zIndex": 10, "texto": "{TAG_FIXA}", "color": "#fde047", "fontSize": 12},
+            {"tipo": "text", "x": 265, "y": 170, "w": 55, "h": 15, "zIndex": 10, "texto": "{TAG_MOVEL}", "color": "#fde047", "fontSize": 12}
+        ]
+    }
+}
