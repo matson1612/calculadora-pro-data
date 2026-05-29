@@ -1,96 +1,107 @@
 {
-  "id": "porta_corr_2f",
-  "nome": "Porta de Correr 2 Folhas",
-  "folhas": 2,
-  "espessura": "Variável",
-  "refKit": "kit_2_folhas_{ESPESSURA_VIDRO}",
-  "opcoes": {
-      "espessura_vidro": ["8mm", "10mm"],
-      "trilho": ["exposto", "embutido"],
-      "puxador": ["puxador h", "sem puxador"],
-      "entre_furos": ["300", "400", "500", "600", "800", "1000", "1200"],
-      "fechadura": ["3530", "sem fechadura"],
-      "trinco": ["não", "baixo", "alto"],
-      "numero_roldanas": ["2", "4", "6"]
-  },
-  "condicoes_opcoes": {
-      "entre_furos": "\"{PUXADOR}\" == \"PUXADOR H\""
-  },
-  "regras_padrao": {},
-  "regras_ferragens": {
-      "trinco_baixo": ["trinco_1335", "capuchinho_1038"],
-      "trinco_alto": ["trinco_1335", "capuchinho_1038"],
-      "fechadura_3530": ["3530", "3230", "3534"],
-      "numero_roldanas_4": ["roldana_1125", "roldana_1125"],
-      "numero_roldanas_6": ["roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125"]
-  },
-  "componentes_composicao": ["acess_de_2f"],
-  "variaveis_calculo": [
-      { "nome": "BASE_L", "formula": "({L} / 2) + 50" },
-      { "nome": "L_MOV", "formula": "FLOOR(({BASE_L} + 24) / 50) * 50" },
-      { "nome": "TEMP_FIX", "formula": "({L} / 2) + (({L} / 2) + 50 - {L_MOV})" },
-      { "nome": "L_FIX", "formula": "FLOOR({TEMP_FIX} > {L_MOV} ? {L_MOV} : {TEMP_FIX})" },
-      { "nome": "H_MOV_EMB", "formula": "{H} - 0" },
-      { "nome": "H_FIX_EMB", "formula": "{H} - 60" },
-      { "nome": "H_MOV_EXP", "formula": "{H} - 25" },
-      { "nome": "H_FIX_EXP", "formula": "{H} - 65" },
-      { "nome": "HFEC", "formula": "1050" },
-      { "nome": "HFURO", "formula": "1050 - ({ENTRE_FUROS} / 2)" }
-  ],
-  "vidros": [
-      { "tipo": "Móvel", "isMovel": true, "w": "{L_MOV}", "h": "{H_MOV_EMB}", "qtd": 1, "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"" },
-      { "tipo": "Fixa", "isMovel": false, "w": "{L_FIX}", "h": "{H_FIX_EMB}", "qtd": 1, "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"" },
-      { "tipo": "Móvel", "isMovel": true, "w": "{L_MOV}", "h": "{H_MOV_EXP}", "qtd": 1, "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"" },
-      { "tipo": "Fixa", "isMovel": false, "w": "{L_FIX}", "h": "{H_FIX_EXP}", "qtd": 1, "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"" }
-  ],
-  "perfis": [
-      { "cod": "trilho_8mm", "tam": "{L}", "qtd": 1, "meta": "Trilho Superior (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
-      { "cod": "capa_8mm", "tam": "{L}", "qtd": 1, "meta": "Capa do Trilho (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
-      { "cod": "guia_8mm", "tam": "{L}", "qtd": 1, "meta": "Guia Inferior (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
-      { "cod": "clic_8mm", "tam": "{L}", "qtd": 1, "meta": "Clic de Arremate (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
-      { "cod": "veda_8mm", "tam": "{H}", "qtd": 1, "meta": "Perfil Vedação (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
-      { "cod": "pu8mm", "tam": "{H}", "qtd": 1, "meta": "Perfil PU Lateral Fixa", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
-      { "cod": "pu10mm", "tam": "{H}", "qtd": 1, "meta": "Perfil PU Central (Para 8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
+            "id": "porta_corr_2f",
+            "nome": "Porta de Correr 2 Folhas",
+            "folhas": 2,
+            "espessura": "Variável",
+            "refKit": "kit_2_folhas_{ESPESSURA_VIDRO}",
+            "opcoes": {
+                "espessura_vidro": ["8mm", "10mm"],
+                "trilho": ["exposto", "embutido"],
+                "puxador": ["puxador h", "sem puxador"],
+                "entre_furos": ["300", "400", "500", "600", "800", "1000", "1200"],
+                "fechadura": ["3530", "sem fechadura"],
+                "trinco": ["não", "sim"],
+                "numero_roldanas": ["2", "4", "6"]
+            },
+            "condicoes_opcoes": {
+                "entre_furos": "\"{PUXADOR}\" == \"PUXADOR H\""
+            },
+            "regras_padrao": {},
+            "regras_ferragens": {
+                "trinco_sim": ["trinco_1335", "capuchinho_1038"],
+                "fechadura_3530": ["3530", "3230", "3534"],
+                "numero_roldanas_4": ["roldana_1125", "roldana_1125"],
+                "numero_roldanas_6": ["roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125"]
+            },
+            "componentes_composicao": ["acess_de_2f"],
+            "variaveis_calculo": [
+                { "nome": "BASE_L", "formula": "({L} / 2) + 50" },
+                { "nome": "L_MOV", "formula": "FLOOR(({BASE_L} + 24) / 50) * 50" },
+                { "nome": "TEMP_FIX", "formula": "({L} / 2) + (({L} / 2) + 50 - {L_MOV})" },
+                { "nome": "L_FIX", "formula": "FLOOR({TEMP_FIX} > {L_MOV} ? {L_MOV} : {TEMP_FIX})" },
+                { "nome": "H_MOV_EMB", "formula": "{H} - 0" },
+                { "nome": "H_FIX_EMB", "formula": "{H} - 60" },
+                { "nome": "H_MOV_EXP", "formula": "{H} - 25" },
+                { "nome": "H_FIX_EXP", "formula": "{H} - 65" },
+                { "nome": "HFEC", "formula": "1050" },
+                { "nome": "HFURO", "formula": "1050 - ({ENTRE_FUROS} / 2)" }
+            ],
+            "vidros": [
+                { "tipo": "Móvel", "isMovel": true, "w": "{L_MOV}", "h": "{H_MOV_EMB}", "qtd": 1, "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"" },
+                { "tipo": "Fixa", "isMovel": false, "w": "{L_FIX}", "h": "{H_FIX_EMB}", "qtd": 1, "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"" },
+                { "tipo": "Móvel", "isMovel": true, "w": "{L_MOV}", "h": "{H_MOV_EXP}", "qtd": 1, "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"" },
+                { "tipo": "Fixa", "isMovel": false, "w": "{L_FIX}", "h": "{H_FIX_EXP}", "qtd": 1, "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"" }
+            ],
+            "perfis": [
+                { "cod": "trilho_8mm", "tam": "{L}", "qtd": 1, "meta": "Trilho Superior (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
+                { "cod": "capa_8mm", "tam": "{L}", "qtd": 1, "meta": "Capa do Trilho (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
+                { "cod": "guia_8mm", "tam": "{L}", "qtd": 1, "meta": "Guia Inferior (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
+                { "cod": "clic_8mm", "tam": "{L}", "qtd": 1, "meta": "Clic de Arremate (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
+                { "cod": "veda_8mm", "tam": "{H}", "qtd": 1, "meta": "Perfil Vedação (8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
+                { "cod": "pu8mm", "tam": "{H}", "qtd": 1, "meta": "Perfil PU Lateral Fixa", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
+                { "cod": "pu10mm", "tam": "{H}", "qtd": 1, "meta": "Perfil PU Central (Para 8mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"8MM\"" },
 
-      { "cod": "trilho_10mm", "tam": "{L}", "qtd": 1, "meta": "Trilho Superior (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
-      { "cod": "capa_10mm", "tam": "{L}", "qtd": 1, "meta": "Capa do Trilho (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
-      { "cod": "guia_10mm", "tam": "{L}", "qtd": 1, "meta": "Guia Inferior (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
-      { "cod": "clic_10mm", "tam": "{L}", "qtd": 1, "meta": "Clic de Arremate (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
-      { "cod": "veda_10mm", "tam": "{H}", "qtd": 1, "meta": "Perfil Vedação (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
-      { "cod": "pu10mm", "tam": "{H}", "qtd": 2, "meta": "Perfil PU Lateral e Central", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
-      
-      { "cod": "escovinha_5x7", "tam": "{L}", "qtd": 2, "meta": "Escova Vedação (Larguras)" },
-      { "cod": "escovinha_5x7", "tam": "{H}", "qtd": 1, "meta": "Escova Vedação (Altura)" }
-  ],
-  "projeto_template": {
-    "versao": "2.0",
-    "canvas": {"w": 1600, "h": 1200},
-    "elementos": [
-        {"tipo": "panel-fixed", "x": 100, "y": 110, "w": 115, "h": 380, "zIndex": 10},
-        {"tipo": "panel-movel", "x": 215, "y": 100, "w": 135, "h": 390, "zIndex": 10},
-        {"tipo": "bounding-box", "x": 60, "y": 80, "w": 300, "h": 500, "zIndex": 0, "texto": "ÁREA DE CORTE"},
-        {"tipo": "dim-h", "x": 100, "y": 510, "w": 250, "h": 10, "zIndex": 10, "texto": "Vão Total: {L}"},
-        {"tipo": "dim-v", "x": 75, "y": 100, "w": 10, "h": 390, "zIndex": 10, "texto": "Vão Total: {H}"},
-        {"tipo": "text", "x": 130, "y": 470, "w": 60, "h": 15, "zIndex": 10, "texto": "{L_FIX}", "color": "#f8fafc", "fontSize": 16},
-        {"tipo": "text", "x": 250, "y": 470, "w": 60, "h": 15, "zIndex": 10, "texto": "{L_MOV}", "color": "#f8fafc", "fontSize": 16},
-        {"tipo": "text", "x": 80, "y": 285, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_FIX_EMB}", "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
-        {"tipo": "text", "x": 80, "y": 290, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_FIX_EXP}", "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
-        {"tipo": "text", "x": 195, "y": 290, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_MOV_EMB}", "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
-        {"tipo": "text", "x": 195, "y": 290, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_MOV_EXP}", "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
-        {"tipo": "circle", "x": 310, "y": 230, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "backgroundColor": "#000"},
-        {"tipo": "circle", "x": 310, "y": 340, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "backgroundColor": "#000"},
-        {"tipo": "text", "x": 290, "y": 285, "w": 40, "h": 15, "zIndex": 10, "texto": "{ENTRE_FUROS}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "color": "#000", "fontSize": 14},
-        {"tipo": "dim-v", "x": 295, "y": 345, "w": 10, "h": 145, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "color": "#38bdf8", "backgroundColor": "transparent", "borderColor": "#38bdf8", "fontSize": 12},
-        {"tipo": "text", "x": 325, "y": 390, "w": 30, "h": 7, "zIndex": 10, "texto": "1050", "condicao": "\"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#f8fafc", "fontSize": 14},
-        {"tipo": "rect", "x": 340, "y": 270, "w": 10, "h": 40, "zIndex": 10, "condicao": "\"{FECHADURA}\" == \"3530\"", "backgroundColor": "#000", "borderColor": "#000"},
-        {"tipo": "circle", "x": 220, "y": 105, "w": 12, "h": 12, "zIndex": 10, "backgroundColor": "#000", "borderColor": "#000"},
-        {"tipo": "circle", "x": 330, "y": 105, "w": 12, "h": 12, "zIndex": 10, "backgroundColor": "#000", "borderColor": "#000"},
-        {"tipo": "text", "x": 265, "y": 115, "w": 40, "h": 15, "zIndex": 10, "texto": "1125", "color": "#000", "fontSize": 12},
-        {"tipo": "circle", "x": 335, "y": 475, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{TRINCO}\" != \"NÃO\"", "backgroundColor": "#000", "borderColor": "#000"},
-        {"tipo": "text", "x": 320, "y": 460, "w": 30, "h": 15, "zIndex": 10, "texto": "335", "condicao": "\"{TRINCO}\" != \"NÃO\"", "color": "#000", "fontSize": 12},
-        {"tipo": "text", "x": 100, "y": 535, "w": 250, "h": 20, "zIndex": 10, "texto": "TRILHO: {TRILHO}", "color": "#ef4444", "fontSize": 16},
-        {"tipo": "text", "x": 105, "y": 555, "w": 250, "h": 20, "zIndex": 10, "texto": "TRINCO: {TRINCO}", "condicao": "\"{TRINCO}\" != \"NÃO\"", "color": "#f59e0b", "fontSize": 16},
-        {"tipo": "text", "x": 320, "y": 245, "w": 40, "h": 15, "zIndex": 10, "texto": "3530", "condicao": "\"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#f8fafc", "fontSize": 14}
-    ]
-}
-}
+                { "cod": "trilho_10mm", "tam": "{L}", "qtd": 1, "meta": "Trilho Superior (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
+                { "cod": "capa_10mm", "tam": "{L}", "qtd": 1, "meta": "Capa do Trilho (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
+                { "cod": "guia_10mm", "tam": "{L}", "qtd": 1, "meta": "Guia Inferior (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
+                { "cod": "clic_10mm", "tam": "{L}", "qtd": 1, "meta": "Clic de Arremate (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
+                { "cod": "veda_10mm", "tam": "{H}", "qtd": 1, "meta": "Perfil Vedação (10mm)", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
+                { "cod": "pu10mm", "tam": "{H}", "qtd": 2, "meta": "Perfil PU Lateral e Central", "condicao": "\"{ESPESSURA_VIDRO}\" == \"10MM\"" },
+                
+                { "cod": "escovinha_5x7", "tam": "{L}", "qtd": 2, "meta": "Escova Vedação (Larguras)" },
+                { "cod": "escovinha_5x7", "tam": "{H}", "qtd": 1, "meta": "Escova Vedação (Altura)" }
+            ],
+            "projeto_template": {
+                "versao": "2.0",
+                "canvas": {"w": 1600, "h": 1200},
+                "elementos": [
+                    {"tipo": "panel-fixed", "x": 100, "y": 110, "w": 115, "h": 380, "zIndex": 10},
+                    {"tipo": "panel-movel", "x": 215, "y": 100, "w": 135, "h": 390, "zIndex": 10},
+                    {"tipo": "bounding-box", "x": 60, "y": 80, "w": 300, "h": 500, "zIndex": 0, "texto": "ÁREA DE CORTE"},
+                    {"tipo": "dim-h", "x": 100, "y": 510, "w": 250, "h": 10, "zIndex": 10, "texto": "Vão Total: {L}"},
+                    {"tipo": "dim-v", "x": 75, "y": 100, "w": 10, "h": 390, "zIndex": 10, "texto": "Vão Total: {H}"},
+                    {"tipo": "text", "x": 130, "y": 470, "w": 60, "h": 15, "zIndex": 10, "texto": "{L_FIX}", "color": "#f8fafc", "fontSize": 16},
+                    {"tipo": "text", "x": 230, "y": 470, "w": 60, "h": 15, "zIndex": 10, "texto": "{L_MOV}", "color": "#f8fafc", "fontSize": 16},
+                    {"tipo": "text", "x": 80, "y": 285, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_FIX_EMB}", "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
+                    {"tipo": "text", "x": 80, "y": 290, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_FIX_EXP}", "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
+                    {"tipo": "text", "x": 195, "y": 290, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_MOV_EMB}", "condicao": "\"{TRILHO}\" == \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
+                    {"tipo": "text", "x": 195, "y": 290, "w": 60, "h": 15, "zIndex": 10, "texto": "{H_MOV_EXP}", "condicao": "\"{TRILHO}\" != \"EMBUTIDO\"", "rotation": 270, "color": "#f8fafc", "fontSize": 16},
+                    {"tipo": "circle", "x": 310, "y": 230, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "backgroundColor": "#000"},
+                    {"tipo": "circle", "x": 310, "y": 340, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "backgroundColor": "#000"},
+                    {"tipo": "text", "x": 290, "y": 285, "w": 40, "h": 15, "zIndex": 10, "texto": "{ENTRE_FUROS}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "color": "#000", "fontSize": 14},
+                    {"tipo": "dim-v", "x": 295, "y": 345, "w": 10, "h": 145, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "color": "#38bdf8", "backgroundColor": "transparent", "borderColor": "#38bdf8", "fontSize": 12},
+                    {"tipo": "text", "x": 325, "y": 390, "w": 30, "h": 7, "zIndex": 10, "texto": "1050", "condicao": "\"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#f8fafc", "fontSize": 14},
+                    {"tipo": "rect", "x": 340, "y": 270, "w": 10, "h": 40, "zIndex": 10, "condicao": "\"{FECHADURA}\" == \"3530\"", "backgroundColor": "#000", "borderColor": "#000"},
+                    
+                    {"tipo": "circle", "x": 220, "y": 105, "w": 12, "h": 12, "zIndex": 10, "backgroundColor": "#000", "borderColor": "#000"},
+                    {"tipo": "circle", "x": 330, "y": 105, "w": 12, "h": 12, "zIndex": 10, "backgroundColor": "#000", "borderColor": "#000"},
+                    
+                    {"tipo": "circle", "x": 235, "y": 105, "w": 12, "h": 12, "zIndex": 10, "condicao": "\"{NUMERO_ROLDANAS}\" == \"4\" || \"{NUMERO_ROLDANAS}\" == \"6\"", "backgroundColor": "#000", "borderColor": "#000"},
+                    {"tipo": "circle", "x": 315, "y": 105, "w": 12, "h": 12, "zIndex": 10, "condicao": "\"{NUMERO_ROLDANAS}\" == \"4\" || \"{NUMERO_ROLDANAS}\" == \"6\"", "backgroundColor": "#000", "borderColor": "#000"},
+                    
+                    {"tipo": "circle", "x": 250, "y": 105, "w": 12, "h": 12, "zIndex": 10, "condicao": "\"{NUMERO_ROLDANAS}\" == \"6\"", "backgroundColor": "#000", "borderColor": "#000"},
+                    {"tipo": "circle", "x": 300, "y": 105, "w": 12, "h": 12, "zIndex": 10, "condicao": "\"{NUMERO_ROLDANAS}\" == \"6\"", "backgroundColor": "#000", "borderColor": "#000"},
+                    
+                    {"tipo": "text", "x": 265, "y": 115, "w": 40, "h": 15, "zIndex": 10, "texto": "1125", "color": "#000", "fontSize": 12},
+                    
+                    {"tipo": "circle", "x": 335, "y": 475, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{TRINCO}\" == \"SIM\"", "backgroundColor": "#000", "borderColor": "#000"},
+                    {"tipo": "text", "x": 320, "y": 460, "w": 30, "h": 15, "zIndex": 10, "texto": "335", "condicao": "\"{TRINCO}\" == \"SIM\"", "color": "#000", "fontSize": 12},
+                    
+                    {"tipo": "text", "x": 100, "y": 535, "w": 250, "h": 20, "zIndex": 10, "texto": "TRILHO: {TRILHO}", "color": "#ef4444", "fontSize": 16},
+                    {"tipo": "text", "x": 105, "y": 555, "w": 250, "h": 20, "zIndex": 10, "texto": "TRINCO: ALTO", "condicao": "\"{TRINCO}\" == \"SIM\" && \"{TRILHO}\" == \"EMBUTIDO\"", "color": "#f59e0b", "fontSize": 16},
+                    {"tipo": "text", "x": 105, "y": 555, "w": 250, "h": 20, "zIndex": 10, "texto": "TRINCO: BAIXO", "condicao": "\"{TRINCO}\" == \"SIM\" && \"{TRILHO}\" != \"EMBUTIDO\"", "color": "#f59e0b", "fontSize": 16},
+                    
+                    {"tipo": "text", "x": 320, "y": 245, "w": 40, "h": 15, "zIndex": 10, "texto": "3530", "condicao": "\"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#f8fafc", "fontSize": 14}
+                ]
+            }
+        }
