@@ -109,6 +109,8 @@
   },
   "vidros": {
     "padrao_8mm": { "incolor": 119.95, "fume": 157.95, "verde": 157.95 },
-    "engenharia_8mm": { "incolor": 154.95, "fume": 195.00, "verde": 195.00 }
+    "engenharia_8mm": { "incolor": 154.95, "fume": 195.00, "verde": 195.00 },
+    "padrao_10mm": { "incolor": 205.49, "fume": 279.99, "verde": 279.99 },
+    "engenharia_10mm": { "incolor": 256.86, "fume": 349.98, "verde": 349.98 }
   }
 }
