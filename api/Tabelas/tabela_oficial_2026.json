@@ -100,7 +100,12 @@
     "leito_pia": { "descricao": "Leito Pia", "preco": 97.52, "barra": 6000, "barra_util": 5950 },
     "pu_pia": { "descricao": "PU Pia", "preco": 58.64, "barra": 6000, "barra_util": 5950 },
     "trilho_pia": { "descricao": "Trilho Pia", "preco": 62.34, "barra": 6000, "barra_util": 5950 },
-    "guia_pia": { "descricao": "Guia Pia", "preco": 121.62, "barra": 6000, "barra_util": 5950 }
+    "guia_pia": { "descricao": "Guia Pia", "preco": 121.62, "barra": 6000, "barra_util": 5950 },
+    "trilho_10mm": { "descricao": "Trilho 10mm", "preco": 240.00, "barra": 6000, "barra_util": 5950 },
+    "capa_10mm": { "descricao": "Capa 10mm", "preco": 85.00, "barra": 6000, "barra_util": 5950 },
+    "guia_10mm": { "descricao": "Guia 10mm", "preco": 110.00, "barra": 6000, "barra_util": 5950 },
+    "clic_10mm": { "descricao": "Clic 10mm", "preco": 40.00, "barra": 6000, "barra_util": 5950 },
+    "veda_10mm": { "descricao": "Veda 10mm", "preco": 60.00, "barra": 6000, "barra_util": 5950 }
   },
   "vidros": {
     "padrao_8mm": { "incolor": 119.95, "fume": 157.95, "verde": 157.95 },
