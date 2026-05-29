@@ -1,5 +1,5 @@
 {
-  "versao_geral": 6.2,
+  "versao_geral": 6.3,
   "mapa_tipologias": {
     "Janelas de Correr": ["jan_corr_2f.json", "jan_corr_4f.json"],
     "Portas Pivotantes": ["porta_piv_1f.json"],
