@@ -2,7 +2,7 @@
   "versao_geral": 7.6,
   "mapa_tipologias": {
     "Janelas de Correr": ["jan_corr_2f.json", "jan_corr_4f.json"],
-    "Portas Pivotantes": ["porta_piv_1f.json","porta_piv_2f"],
+    "Portas Pivotantes": ["porta_piv_1f.json","porta_piv_2f.json"],
     "Portas de Correr": ["porta_corr_2f.json","porta_corr_4f.json"],
     "Sistema Light Holder": ["light_holder_comum.json"]
   },
