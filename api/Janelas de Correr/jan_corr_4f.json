@@ -12,7 +12,7 @@
     "regras_padrao": {
         "trinco": ["não"],
         "puxador": ["não"],
-        "fecho": ["1571", "3532jm"]
+        "fecho": ["1570", "3532jm"]
     },
     "regras_ferragens": {
         "trinco_sim": ["trinco_1335", "trinco_1335", "castanha_1038c", "castanha_1038c"],
