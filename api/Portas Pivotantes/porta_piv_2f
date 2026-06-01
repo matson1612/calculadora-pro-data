@@ -43,8 +43,8 @@
                 { "nome": "HFURO", "formula": "1050 - ({ENTRE_FUROS} / 2)" }
             ],
             "vidros": [
-                { "tipo": "Porta Esq", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": 1 },
-                { "tipo": "Porta Dir", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": 1 }
+                { "tipo": "Porta", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": 1 },
+                { "tipo": "Porta", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": 1 }
             ],
             "perfis": [
                 { "cod": "cantoneira_15mm", "tam": "{H}", "qtd": 2, "meta": "Verticais Laterais Fixação" },
