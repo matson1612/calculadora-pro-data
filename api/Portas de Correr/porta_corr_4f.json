@@ -24,7 +24,7 @@
             },
             "regras_ferragens": {
                 "trinco_sim": ["trinco_1335", "trinco_1335", "capuchinho_1038", "capuchinho_1038"],
-                "fechadura_3530": ["3530", "3230", "3534"],
+                "fechadura_3530": ["3530", "3534"],
                 "numero_roldanas_4": ["roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125"],
                 "numero_roldanas_6": ["roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125", "roldana_1125"]
             },
