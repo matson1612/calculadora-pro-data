@@ -30,36 +30,33 @@
         { "nome": "QTD_FIXO_CALC", "formula": "{NF} - {NPUX}" },
         { "nome": "QTD_PORTA_CALC", "formula": "{NPUX}" },
         { "nome": "QTD_TRILHO", "formula": "\"{ABERTURA_DUPLA}\" == \"SIM\" ? {NF} : {NF} - 1" },
-        { "nome": "QTD_ROLDANA", "formula": "{QTD_TRILHO} * 2" },
         { "nome": "QTD_FECH", "formula": "\"{ABERTURA_DUPLA}\" == \"SIM\" ? 2 : 1" },
         { "nome": "CANVAS_W", "formula": "800" },
         { "nome": "PANEL_W", "formula": "{CANVAS_W} / {NF}" }
+    ],
+    "ferragens_dinamicas": [
+        { "cod": "roldana_1126e", "qtd": "{QTD_TRILHO} * 2" },
+        { "cod": "batente", "qtd": "{NF} * 2" },
+        { "cod": "3530", "qtd": "{QTD_FECH}", "condicao": "\"{FECHADURA}\" == \"3530\"" },
+        { "cod": "3230", "qtd": "{QTD_FECH}", "condicao": "\"{FECHADURA}\" == \"3530\"" },
+        { "cod": "puxador_simples", "qtd": "{QTD_FECH}", "condicao": "\"{PUXADOR}\" == \"SIMPLES\"" },
+        { "cod": "puxador_h", "qtd": "{QTD_FECH}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"" }
     ],
     "vidros": [
         { "tipo": "Porta", "isMovel": true, "w": "{L_MOVEL}", "h": "{H_VIDRO}", "qtd": "{QTD_PORTA_CALC}" },
         { "tipo": "Fixo", "isMovel": false, "w": "{L_FIXO}", "h": "{H_VIDRO}", "qtd": "{QTD_FIXO_CALC}", "condicao": "{QTD_FIXO_CALC} > 0" }
     ],
     "perfis": [
-        { "cod": "leito", "tam": "{L_MOVEL}", "qtd": "{QTD_PORTA_CALC}", "meta": "Leito (Largura Portas)" },
-        { "cod": "leito", "tam": "{L_FIXO}", "qtd": "{QTD_FIXO_CALC}", "meta": "Leito (Largura Fixos)", "condicao": "{QTD_FIXO_CALC} > 0" },
-        { "cod": "mao_amiga", "tam": "{H_VIDRO}", "qtd": "2 * ({NF} - 1)", "meta": "Mão de Amiga (Transpasses)" },
+        { "cod": "leito", "tam": "{L_MOVEL}", "qtd": "{QTD_PORTA_CALC}", "meta": "Leito Inferior/Sup (Porta)" },
+        { "cod": "leito", "tam": "{L_FIXO}", "qtd": "{QTD_FIXO_CALC}", "meta": "Leito Inferior/Sup (Fixo)", "condicao": "{QTD_FIXO_CALC} > 0" },
+        { "cod": "mao_amiga", "tam": "{H_VIDRO}", "qtd": "({NF} - 1) * 2", "meta": "Transpasse Mão de Amiga" },
         { "cod": "filete", "tam": "{L}", "qtd": "{QTD_TRILHO}", "meta": "Trilho Filete Superior" },
-        { "cod": "guia_stanller", "tam": "{L}", "qtd": "{QTD_TRILHO}", "meta": "Guia Stanller (Horizontal)" },
-        { "cod": "guia_stanller", "tam": "{H}", "qtd": 2, "meta": "Guia Stanller (Vertical Lateral)" },
-
-        { "cod": "escovinha_5x7", "tam": "{L_MOVEL}", "qtd": "2 * {QTD_PORTA_CALC}", "meta": "Escovinha 5x7 (Largura Portas)" },
-        { "cod": "escovinha_5x7", "tam": "{L_FIXO}", "qtd": "2 * {QTD_FIXO_CALC}", "meta": "Escovinha 5x7 (Largura Fixos)", "condicao": "{QTD_FIXO_CALC} > 0" },
-        { "cod": "escovinha_5x7", "tam": "{H_VIDRO}", "qtd": 4, "meta": "Escovinha 5x7 (Altura Laterais)" },
-        { "cod": "escovinha_7x6", "tam": "{H_VIDRO}", "qtd": "4 * ({NF} - 1)", "meta": "Escovinha 7x6 (Transpasses Mão de Amiga)" },
-
-        { "cod": "roldana_1126e", "tam": "1000", "qtd": "{QTD_ROLDANA}", "meta": "Roldanas (1126E)" },
-        { "cod": "batente", "tam": "1000", "qtd": "{NF} * 2", "meta": "Batentes de Fim de Curso" },
-        
-        { "cod": "3530", "tam": "1000", "qtd": "{QTD_FECH}", "meta": "Fechadura Principal", "condicao": "\"{FECHADURA}\" == \"3530\"" },
-        { "cod": "3230", "tam": "1000", "qtd": "{QTD_FECH}", "meta": "Contra-Fechadura", "condicao": "\"{FECHADURA}\" == \"3530\"" },
-        
-        { "cod": "puxador_simples", "tam": "1000", "qtd": "{QTD_FECH}", "meta": "Puxador Simples", "condicao": "\"{PUXADOR}\" == \"SIMPLES\"" },
-        { "cod": "puxador_h", "tam": "1000", "qtd": "{QTD_FECH}", "meta": "Puxador H", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"" }
+        { "cod": "guia_stanller", "tam": "{L}", "qtd": "{QTD_TRILHO}", "meta": "Guia Stanller (Largura Superior)" },
+        { "cod": "guia_stanller", "tam": "{H}", "qtd": 2, "meta": "Guia Stanller (Laterais)" },
+        { "cod": "escovinha_5x7", "tam": "{L_MOVEL}", "qtd": "{QTD_PORTA_CALC} * 2", "meta": "Escova 5x7 (Leito Porta)" },
+        { "cod": "escovinha_5x7", "tam": "{L_FIXO}", "qtd": "{QTD_FIXO_CALC} * 2", "meta": "Escova 5x7 (Leito Fixo)", "condicao": "{QTD_FIXO_CALC} > 0" },
+        { "cod": "escovinha_5x7", "tam": "{H_VIDRO}", "qtd": 4, "meta": "Escova 5x7 (Guias Laterais)" },
+        { "cod": "escovinha_7x6", "tam": "{H_VIDRO}", "qtd": "({NF} - 1) * 4", "meta": "Escova 7x6 (Mão de Amiga)" }
     ],
     "projeto_template": {
         "versao": "4.0",
