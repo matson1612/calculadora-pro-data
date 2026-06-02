@@ -156,4 +156,25 @@
             
             {"tipo": "circle", "x": 120, "y": 260, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" != \"NÃO\" && \"{PUXADOR}\" != \"SEM PUXADOR\"", "backgroundColor": "#000"},
             {"tipo": "circle", "x": 120, "y": 360, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "backgroundColor": "#000"},
-            {"tipo": "dim-v", "x": 133, "y": 364, "w": 10
+            {"tipo": "dim-v", "x": 133, "y": 364, "w": 10, "h": 90, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"", "color": "#38bdf8", "fontSize": 12, "invertCota": true},
+            
+            {"tipo": "circle", "x": "100 + {CANVAS_W} - 40", "y": 260, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" != \"NÃO\" && \"{PUXADOR}\" != \"SEM PUXADOR\" && \"{ABERTURA_DUPLA}\" == \"SIM\"", "backgroundColor": "#000"},
+            {"tipo": "circle", "x": "100 + {CANVAS_W} - 40", "y": 360, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{PUXADOR}\" == \"PUXADOR H\" && \"{ABERTURA_DUPLA}\" == \"SIM\"", "backgroundColor": "#000"},
+            {"tipo": "dim-v", "x": "100 + {CANVAS_W} - 50", "y": 362, "w": 10, "h": 90, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\" && \"{ABERTURA_DUPLA}\" == \"SIM\"", "color": "#38bdf8", "fontSize": 12},
+            
+            {"tipo": "rect", "x": 100, "y": 303, "w": 12, "h": 40, "zIndex": 10, "condicao": "\"{FECHADURA}\" == \"3530\"", "backgroundColor": "#000"},
+            {"tipo": "text", "x": 95, "y": 280, "w": 20, "h": 10, "zIndex": 10, "texto": "3530", "condicao": "\"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            {"tipo": "text", "x": 95, "y": 396, "w": 20, "h": 10, "zIndex": 10, "texto": "1050", "condicao": "\"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            
+            {"tipo": "rect", "x": "100 + {CANVAS_W} - 12", "y": 299, "w": 12, "h": 40, "zIndex": 10, "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "backgroundColor": "#000"},
+            {"tipo": "text", "x": "100 + {CANVAS_W} - 19", "y": 278, "w": 20, "h": 10, "zIndex": 10, "texto": "3530", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            {"tipo": "text", "x": "100 + {CANVAS_W} - 18", "y": 407, "w": 20, "h": 10, "zIndex": 10, "texto": "1050", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            
+            {"tipo": "dim-h", "x": 100, "y": 245, "w": 20, "h": 10, "zIndex": 10, "texto": "{DPUX}", "condicao": "\"{PUXADOR}\" != \"NÃO\" && \"{PUXADOR}\" != \"SEM PUXADOR\"", "invertCota": true},
+            {"tipo": "dim-h", "x": "100 + {CANVAS_W} - 20", "y": 245, "w": 20, "h": 10, "zIndex": 10, "texto": "{DPUX}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{PUXADOR}\" != \"NÃO\" && \"{PUXADOR}\" != \"SEM PUXADOR\"", "invertCota": true},
+            
+            {"tipo": "text", "x": 111, "y": 314, "w": 60, "h": 15, "zIndex": 10, "texto": "{ENTRE_FUROS}", "color": "#ffffff", "fontSize": 11, "condicao": "\"{PUXADOR}\" != \"NÃO\" && \"{PUXADOR}\" != \"SEM PUXADOR\""},
+            {"tipo": "text", "x": "100 + {CANVAS_W} - 70", "y": 308, "w": 60, "h": 15, "zIndex": 10, "texto": "{ENTRE_FUROS}", "color": "#ffffff", "fontSize": 11, "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{PUXADOR}\" != \"NÃO\" && \"{PUXADOR}\" != \"SEM PUXADOR\""}
+        ]
+    }
+}
