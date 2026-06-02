@@ -31,8 +31,8 @@
         { "nome": "QTD_PORTA_CALC", "formula": "{NPUX}" },
         { "nome": "QTD_TRILHO", "formula": "\"{ABERTURA_DUPLA}\" == \"SIM\" ? {NF} : {NF} - 1" },
         { "nome": "QTD_FECH", "formula": "\"{ABERTURA_DUPLA}\" == \"SIM\" ? 2 : 1" },
-        { "nome": "CANVAS_W", "formula": "800" },
-        { "nome": "PANEL_W", "formula": "{CANVAS_W} / {NF}" }
+        { "nome": "PANEL_W", "formula": "80" },
+        { "nome": "CANVAS_W", "formula": "{NF} * {PANEL_W}" }
     ],
     "ferragens_dinamicas": [
         { "cod": "roldana_1126e", "qtd": "{QTD_TRILHO} * 2" },
@@ -62,8 +62,8 @@
         "versao": "4.0",
         "canvas": {"w": 1600, "h": 1200},
         "elementos": [
-            {"tipo": "bounding-box", "x": 100, "y": 138, "w": 800, "h": 384, "zIndex": 0, "texto": "ÁREA DE CORTE"},
-            {"tipo": "dim-h", "x": 100, "y": 503, "w": 800, "h": 10, "zIndex": 10, "texto": "Vão Total: {L}", "invertCota": true},
+            {"tipo": "bounding-box", "x": 100, "y": 138, "w": "{CANVAS_W}", "h": 384, "zIndex": 0, "texto": "ÁREA DE CORTE"},
+            {"tipo": "dim-h", "x": 100, "y": 503, "w": "{CANVAS_W}", "h": 10, "zIndex": 10, "texto": "Vão Total: {L}", "invertCota": true},
             {"tipo": "dim-v", "x": 78, "y": 150, "w": 10, "h": 350, "zIndex": 10, "texto": "Vão Total: {H}", "invertCota": false},
             {"tipo": "dim-v", "x": "100 + {CANVAS_W} + 35", "y": 150, "w": 10, "h": 350, "zIndex": 10, "texto": "Vidro: {H_VIDRO}", "color": "#38bdf8"},
             
@@ -158,9 +158,9 @@
             {"tipo": "text", "x": 95, "y": 280, "w": 20, "h": 10, "zIndex": 10, "texto": "3530", "condicao": "\"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
             {"tipo": "text", "x": 95, "y": 396, "w": 20, "h": 10, "zIndex": 10, "texto": "1050", "condicao": "\"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
             
-            {"tipo": "rect", "x": 886, "y": 299, "w": 12, "h": 40, "zIndex": 10, "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "backgroundColor": "#000"},
-            {"tipo": "text", "x": 881, "y": 278, "w": 20, "h": 10, "zIndex": 10, "texto": "3530", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
-            {"tipo": "text", "x": 882, "y": 407, "w": 20, "h": 10, "zIndex": 10, "texto": "1050", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            {"tipo": "rect", "x": "100 + {CANVAS_W} - 12", "y": 299, "w": 12, "h": 40, "zIndex": 10, "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "backgroundColor": "#000"},
+            {"tipo": "text", "x": "100 + {CANVAS_W} - 19", "y": 278, "w": 20, "h": 10, "zIndex": 10, "texto": "3530", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            {"tipo": "text", "x": "100 + {CANVAS_W} - 18", "y": 407, "w": 20, "h": 10, "zIndex": 10, "texto": "1050", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{FECHADURA}\" == \"3530\"", "rotation": 270, "color": "#000", "fontSize": 12},
             
             {"tipo": "dim-h", "x": 100, "y": 245, "w": 20, "h": 10, "zIndex": 10, "texto": "{DPUX}", "condicao": "\"{PUXADOR}\" != \"NÃO\" && \"{PUXADOR}\" != \"SEM PUXADOR\"", "invertCota": true},
             {"tipo": "dim-h", "x": "100 + {CANVAS_W} - 20", "y": 245, "w": 20, "h": 10, "zIndex": 10, "texto": "{DPUX}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && \"{PUXADOR}\" != \"NÃO\" && \"{PUXADOR}\" != \"SEM PUXADOR\"", "invertCota": true},
