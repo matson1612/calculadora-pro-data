@@ -65,7 +65,6 @@
             {"tipo":"bounding-box","x":62,"y":138,"w":"{CANVAS_W}+50","h":384,"zIndex":0,"texto":"ÁREA DE CORTE","id":"ep0k2axnx","tempStartX":100,"tempStartY":138,"tempStartW":800,"tempStartH":384},
             {"tipo":"dim-h","x":100,"y":503,"w":"{CANVAS_W}","h":10,"zIndex":10,"texto":"Vão Total: {L}","invertCota":true,"id":"r47j6xump"},
             {"tipo":"dim-v","x":78,"y":150,"w":10,"h":350,"zIndex":10,"texto":"Vão Total: {H}","invertCota":false,"id":"d3v4byerk"},
-            {"tipo":"dim-v","x":"100 + {CANVAS_W} + 35","y":150,"w":10,"h":350,"zIndex":10,"texto":"Vidro: {H_VIDRO}","color":"#38bdf8","id":"9ao0is86l"},
             {"tipo":"panel-movel","x":"100 + {PANEL_W} * 0","y":150,"w":"{PANEL_W}","h":332,"zIndex":10,"condicao":"{NF} >= 1","id":"sw2fbchg6"},
             {"tipo":"text","x":"100 + {PANEL_W} * 0","y":170,"w":"{PANEL_W}","h":15,"zIndex":11,"texto":"Porta","condicao":"{NF} >= 1","color":"#fde047","id":"2ggmmk8hc"},
             {"tipo":"text","x":"100 + {PANEL_W} * 0","y":185,"w":"{PANEL_W}","h":15,"zIndex":11,"texto":"{QTD_PORTA} {TAG_PORTA}","condicao":"{NF} >= 1","color":"#fde047","id":"xrmtdz078"},
