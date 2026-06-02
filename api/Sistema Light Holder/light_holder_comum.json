@@ -5,12 +5,45 @@
     "espessura": "8mm",
     "refKit": null,
     "opcoes": {
-        "folhas": ["2", "3", "4", "5", "6", "7", "8", "9", "10"],
-        "abertura_dupla": ["não", "sim"],
-        "fechadura": ["3530", "não"],
-        "puxador": ["não", "simples", "puxador h"],
-        "distancia_puxador": ["50", "80", "100", "150"],
-        "entre_furos": ["300", "400", "500", "600", "800", "1000", "1200"]
+        "folhas": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "abertura_dupla": [
+            "não",
+            "sim"
+        ],
+        "fechadura": [
+            "3530",
+            "não"
+        ],
+        "puxador": [
+            "não",
+            "simples",
+            "puxador h"
+        ],
+        "distancia_puxador": [
+            "50",
+            "80",
+            "100",
+            "150"
+        ],
+        "entre_furos": [
+            "300",
+            "400",
+            "500",
+            "600",
+            "800",
+            "1000",
+            "1200"
+        ]
     },
     "condicoes_opcoes": {
         "entre_furos": "\"{PUXADOR}\" == \"PUXADOR H\"",
@@ -20,24 +53,67 @@
     "regras_ferragens": {},
     "componentes_composicao": [],
     "variaveis_calculo": [
-        { "nome": "NF", "formula": "{FOLHAS}" },
-        { "nome": "NPUX", "formula": "\"{ABERTURA_DUPLA}\" == \"SIM\" ? 2 : 1" },
-        { "nome": "DPUX", "formula": "\"{PUXADOR}\" == \"NÃO\" || \"{PUXADOR}\" == \"SEM PUXADOR\" ? 52 : {DISTANCIA_PUXADOR}" },
-        { "nome": "H_VIDRO", "formula": "{H} - 65" },
-        
-        { "nome": "L_FIXO", "formula": "({L} + 15 * ({NF} - 1) - {DPUX} * {NPUX}) / {NF}" },
-        { "nome": "L_MOVEL", "formula": "{L_FIXO} + {DPUX}" },
-        { "nome": "HFURO", "formula": "1050 - ({ENTRE_FUROS} / 2)" },
-        
-        { "nome": "QTD_FIXO_CALC", "formula": "{NF} - {NPUX}" },
-        { "nome": "QTD_PORTA_CALC", "formula": "{NPUX}" },
-        
-        { "nome": "CANVAS_W", "formula": "800" },
-        { "nome": "PANEL_W", "formula": "{CANVAS_W} / {NF}" }
+        {
+            "nome": "NF",
+            "formula": "{FOLHAS}"
+        },
+        {
+            "nome": "NPUX",
+            "formula": "\"{ABERTURA_DUPLA}\" == \"SIM\" ? 2 : 1"
+        },
+        {
+            "nome": "DPUX",
+            "formula": "\"{PUXADOR}\" == \"NÃO\" || \"{PUXADOR}\" == \"SEM PUXADOR\" ? 52 : {DISTANCIA_PUXADOR}"
+        },
+        {
+            "nome": "H_VIDRO",
+            "formula": "{H} - 65"
+        },
+        {
+            "nome": "L_FIXO",
+            "formula": "({L} + 15 * ({NF} - 1) - {DPUX} * {NPUX}) / {NF}"
+        },
+        {
+            "nome": "L_MOVEL",
+            "formula": "{L_FIXO} + {DPUX}"
+        },
+        {
+            "nome": "HFURO",
+            "formula": "1050 - ({ENTRE_FUROS} / 2)"
+        },
+        {
+            "nome": "QTD_FIXO_CALC",
+            "formula": "{NF} - {NPUX}"
+        },
+        {
+            "nome": "QTD_PORTA_CALC",
+            "formula": "{NPUX}"
+        },
+        {
+            "nome": "CANVAS_W",
+            "formula": "800"
+        },
+        {
+            "nome": "PANEL_W",
+            "formula": "{CANVAS_W} / {NF}"
+        }
     ],
     "vidros": [
-        { "tipo": "Porta", "isMovel": true, "w": "{L_MOVEL}", "h": "{H_VIDRO}", "qtd": "{QTD_PORTA_CALC}" },
-        { "tipo": "Fixo", "isMovel": false, "w": "{L_FIXO}", "h": "{H_VIDRO}", "qtd": "{QTD_FIXO_CALC}", "condicao": "{QTD_FIXO_CALC} > 0" }
+        {
+            "tipo": "Porta",
+            "isMovel": true,
+            "w": "{L_MOVEL}",
+            "h": "{H_VIDRO}",
+            "qtd": "{QTD_PORTA_CALC}"
+        },
+        {
+            "tipo": "Fixo",
+            "isMovel": false,
+            "w": "{L_FIXO}",
+            "h": "{H_VIDRO}",
+            "qtd": "{QTD_FIXO_CALC}",
+            "condicao": "{QTD_FIXO_CALC} > 0"
+        }
     ],
     "perfis": [],
     "projeto_template": {
@@ -100,9 +176,9 @@
             },
             {
                 "tipo": "panel-movel",
-                "x": 98,
+                "x": "100 + {PANEL_W} * 0",
                 "y": 150,
-                "w": 202,
+                "w": "{PANEL_W}",
                 "h": 332,
                 "zIndex": 10,
                 "condicao": "{NF} >= 1",
@@ -114,7 +190,7 @@
             },
             {
                 "tipo": "text",
-                "x": "100",
+                "x": "100 + {PANEL_W} * 0",
                 "y": 170,
                 "w": "{PANEL_W}",
                 "h": 15,
@@ -126,7 +202,7 @@
             },
             {
                 "tipo": "text",
-                "x": "100",
+                "x": "100 + {PANEL_W} * 0",
                 "y": 185,
                 "w": "{PANEL_W}",
                 "h": 15,
@@ -138,7 +214,7 @@
             },
             {
                 "tipo": "text",
-                "x": "100",
+                "x": "100 + {PANEL_W} * 0",
                 "y": 465,
                 "w": "{PANEL_W}",
                 "h": 15,
@@ -150,7 +226,7 @@
             },
             {
                 "tipo": "text",
-                "x": 282,
+                "x": "100 + {PANEL_W} * 0 + {PANEL_W} - 15",
                 "y": 310,
                 "w": 15,
                 "h": 15,
@@ -252,7 +328,7 @@
             },
             {
                 "tipo": "text",
-                "x": 303,
+                "x": "100 + {PANEL_W} * 1 + {PANEL_W} - 15",
                 "y": 308,
                 "w": 15,
                 "h": 15,
@@ -354,7 +430,7 @@
             },
             {
                 "tipo": "text",
-                "x": 503,
+                "x": "100 + {PANEL_W} * 2 + {PANEL_W} - 15",
                 "y": 311,
                 "w": 15,
                 "h": 15,
@@ -456,7 +532,7 @@
             },
             {
                 "tipo": "text",
-                "x": 702,
+                "x": "100 + {PANEL_W} * 3 + {PANEL_W} - 15",
                 "y": 310,
                 "w": 15,
                 "h": 15,
@@ -558,7 +634,7 @@
             },
             {
                 "tipo": "text",
-                "x": "100 + {PANEL_W} * 4 + 15",
+                "x": "100 + {PANEL_W} * 4 + {PANEL_W} - 15",
                 "y": 310,
                 "w": 15,
                 "h": 15,
@@ -572,7 +648,7 @@
             },
             {
                 "tipo": "panel-fixed",
-                "x": "100 + {PANEL_W} * 6",
+                "x": "100 + {PANEL_W} * 5",
                 "y": 150,
                 "w": "{PANEL_W}",
                 "h": 332,
@@ -658,7 +734,7 @@
             },
             {
                 "tipo": "text",
-                "x": 1101,
+                "x": "100 + {PANEL_W} * 5 + {PANEL_W} - 15",
                 "y": 311,
                 "w": 15,
                 "h": 15,
@@ -674,7 +750,7 @@
             },
             {
                 "tipo": "panel-fixed",
-                "x": 1099,
+                "x": "100 + {PANEL_W} * 6",
                 "y": 150,
                 "w": "{PANEL_W}",
                 "h": 332,
@@ -760,7 +836,7 @@
             },
             {
                 "tipo": "text",
-                "x": 1300,
+                "x": "100 + {PANEL_W} * 6 + {PANEL_W} - 15",
                 "y": 311,
                 "w": 15,
                 "h": 15,
@@ -862,7 +938,7 @@
             },
             {
                 "tipo": "text",
-                "x": 1502,
+                "x": "100 + {PANEL_W} * 7 + {PANEL_W} - 15",
                 "y": 313,
                 "w": 15,
                 "h": 15,
@@ -964,7 +1040,7 @@
             },
             {
                 "tipo": "text",
-                "x": 1702,
+                "x": "100 + {PANEL_W} * 8 + {PANEL_W} - 15",
                 "y": 311,
                 "w": 15,
                 "h": 15,
@@ -1006,7 +1082,7 @@
             },
             {
                 "tipo": "text",
-                "x": null,
+                "x": "100 + {PANEL_W} * 9",
                 "y": 185,
                 "w": "{PANEL_W}",
                 "h": 15,
@@ -1066,7 +1142,7 @@
             },
             {
                 "tipo": "text",
-                "x": 1902,
+                "x": "100 + {PANEL_W} * 9 + {PANEL_W} - 15",
                 "y": 310,
                 "w": 15,
                 "h": 15,
