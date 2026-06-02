@@ -62,7 +62,7 @@
         "versao": "4.0",
         "canvas": {"w": 1600, "h": 1200},
         "elementos": [
-            {"tipo": "bounding-box", "x": 62, "y": 138, "w": "{CANVAS_W}+50", "h": 384, "zIndex": 0, "texto": "ÁREA DE CORTE"},
+            {"tipo": "bounding-box", "x": 62, "y": 138, "w": "({CANVAS_W} + 50)", "h": 384, "zIndex": 0, "texto": "ÁREA DE CORTE"},
             {"tipo": "dim-h", "x": 100, "y": 503, "w": "{CANVAS_W}", "h": 10, "zIndex": 10, "texto": "Vão Total: {L}", "invertCota": true},
             {"tipo": "dim-v", "x": 78, "y": 150, "w": 10, "h": 350, "zIndex": 10, "texto": "Vão Total: {H}", "invertCota": false},
             {"tipo": "dim-v", "x": "100 + {CANVAS_W} + 35", "y": 150, "w": 10, "h": 350, "zIndex": 10, "texto": "Vidro: {H_VIDRO}", "color": "#38bdf8"},
@@ -98,7 +98,7 @@
             {"tipo": "text", "x": "100 + {PANEL_W} * 3", "y": 170, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 4", "color": "#fde047"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 3", "y": 185, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "{QTD_PORTA} {TAG_PORTA}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 4", "color": "#fde047"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 3", "y": 465, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "{L_MOVEL}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 4", "color": "#f8fafc"},
-            {"tipo": "text", "x": "100 + {PANEL_W} * 3 + {PANEL_W} - 15", "y": 310, "w": 15, "h": 15, "zIndex": 11, "texto": "{H_VIDRO}", "condicao": "{NF} >= 4", "rotation": 270, "color": "#38bdf8", "fontSize": 12},
+            {"tipo": "text", "x": "100 + {PANEL_W} * 3 + {PANEL_W} - 15", "y": 312, "w": 15, "h": 15, "zIndex": 11, "texto": "{H_VIDRO}", "condicao": "{NF} >= 4", "rotation": 270, "color": "#38bdf8", "fontSize": 12},
             
             {"tipo": "panel-fixed", "x": "100 + {PANEL_W} * 4", "y": 150, "w": "{PANEL_W}", "h": 332, "zIndex": 10, "condicao": "{NF} >= 5"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 4", "y": 170, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "Fixo", "condicao": "{NF} >= 5 && !(\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 5)", "color": "#fde047"},
@@ -125,7 +125,7 @@
             {"tipo": "text", "x": "100 + {PANEL_W} * 6", "y": 170, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 7", "color": "#fde047"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 6", "y": 185, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "{QTD_PORTA} {TAG_PORTA}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 7", "color": "#fde047"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 6", "y": 465, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "{L_MOVEL}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 7", "color": "#f8fafc"},
-            {"tipo": "text", "x": "100 + {PANEL_W} * 6 + {PANEL_W} - 15", "y": 310, "w": 15, "h": 15, "zIndex": 11, "texto": "{H_VIDRO}", "condicao": "{NF} >= 7", "rotation": 270, "color": "#38bdf8", "fontSize": 12},
+            {"tipo": "text", "x": "100 + {PANEL_W} * 6 + {PANEL_W} - 15", "y": 311, "w": 15, "h": 15, "zIndex": 11, "texto": "{H_VIDRO}", "condicao": "{NF} >= 7", "rotation": 270, "color": "#38bdf8", "fontSize": 12},
             
             {"tipo": "panel-fixed", "x": "100 + {PANEL_W} * 7", "y": 150, "w": "{PANEL_W}", "h": 332, "zIndex": 10, "condicao": "{NF} >= 8"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 7", "y": 170, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "Fixo", "condicao": "{NF} >= 8 && !(\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 8)", "color": "#fde047"},
@@ -134,7 +134,7 @@
             {"tipo": "text", "x": "100 + {PANEL_W} * 7", "y": 170, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 8", "color": "#fde047"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 7", "y": 185, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "{QTD_PORTA} {TAG_PORTA}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 8", "color": "#fde047"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 7", "y": 465, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "{L_MOVEL}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 8", "color": "#f8fafc"},
-            {"tipo": "text", "x": "100 + {PANEL_W} * 7 + {PANEL_W} - 15", "y": 310, "w": 15, "h": 15, "zIndex": 11, "texto": "{H_VIDRO}", "condicao": "{NF} >= 8", "rotation": 270, "color": "#38bdf8", "fontSize": 12},
+            {"tipo": "text", "x": "100 + {PANEL_W} * 7 + {PANEL_W} - 15", "y": 313, "w": 15, "h": 15, "zIndex": 11, "texto": "{H_VIDRO}", "condicao": "{NF} >= 8", "rotation": 270, "color": "#38bdf8", "fontSize": 12},
             
             {"tipo": "panel-fixed", "x": "100 + {PANEL_W} * 8", "y": 150, "w": "{PANEL_W}", "h": 332, "zIndex": 10, "condicao": "{NF} >= 9"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 8", "y": 170, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "Fixo", "condicao": "{NF} >= 9 && !(\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 9)", "color": "#fde047"},
@@ -143,7 +143,7 @@
             {"tipo": "text", "x": "100 + {PANEL_W} * 8", "y": 170, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 9", "color": "#fde047"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 8", "y": 185, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "{QTD_PORTA} {TAG_PORTA}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 9", "color": "#fde047"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 8", "y": 465, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "{L_MOVEL}", "condicao": "\"{ABERTURA_DUPLA}\" == \"SIM\" && {NF} == 9", "color": "#f8fafc"},
-            {"tipo": "text", "x": "100 + {PANEL_W} * 8 + {PANEL_W} - 15", "y": 310, "w": 15, "h": 15, "zIndex": 11, "texto": "{H_VIDRO}", "condicao": "{NF} >= 9", "rotation": 270, "color": "#38bdf8", "fontSize": 12},
+            {"tipo": "text", "x": "100 + {PANEL_W} * 8 + {PANEL_W} - 15", "y": 311, "w": 15, "h": 15, "zIndex": 11, "texto": "{H_VIDRO}", "condicao": "{NF} >= 9", "rotation": 270, "color": "#38bdf8", "fontSize": 12},
             
             {"tipo": "panel-fixed", "x": "100 + {PANEL_W} * 9", "y": 150, "w": "{PANEL_W}", "h": 332, "zIndex": 10, "condicao": "{NF} == 10"},
             {"tipo": "text", "x": "100 + {PANEL_W} * 9", "y": 170, "w": "{PANEL_W}", "h": 15, "zIndex": 11, "texto": "Fixo", "condicao": "{NF} == 10 && \"{ABERTURA_DUPLA}\" != \"SIM\"", "color": "#fde047"},
