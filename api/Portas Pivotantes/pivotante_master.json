@@ -1,28 +1,23 @@
 {
     "id": "porta_piv_master",
-    "nome": "Porta Pivotante (Customizável)",
+    "nome": "Porta Pivotante",
     "isPivotante": true,
     "folhas": 0,
     "espessura": "8mm",
     "refKit": null,
     "presets": [
-        { "id": "piv_1f", "nome": "1 Folha", "icone": "fa-door-closed", "opcoes": { "modelo_base": "1 folha", "bandeira_sup": "não", "bandeira_lat": "não" } },
-        { "id": "piv_2f", "nome": "2 Folhas", "icone": "fa-door-open", "opcoes": { "modelo_base": "2 folhas", "bandeira_sup": "não", "bandeira_lat": "não" } },
-        { "id": "piv_1f_band", "nome": "1 Folha + Sup", "icone": "fa-border-all", "opcoes": { "modelo_base": "1 folha", "bandeira_sup": "sim", "bandeira_lat": "não" } },
-        { "id": "piv_2f_band", "nome": "2 Folhas + Sup", "icone": "fa-table-cells-large", "opcoes": { "modelo_base": "2 folhas", "bandeira_sup": "sim", "bandeira_lat": "não" } }
+        { "id": "piv_1f", "nome": "1 Folha", "icone": "fa-door-closed", "opcoes": { "modelo_base": "1 folha" } },
+        { "id": "piv_2f", "nome": "2 Folhas", "icone": "fa-door-open", "opcoes": { "modelo_base": "2 folhas" } }
     ],
     "opcoes": {
         "modelo_base": ["1 folha", "2 folhas"],
-        "bandeira_sup": ["não", "sim"],
-        "bandeira_lat": ["não", "1 lateral", "2 laterais"],
         "tipo_kit": ["padrão", "big"],
         "tipo_kit_big": ["glaspeças", "termoquimica"],
         "fechadura": ["padrão", "maçaneta", "sem fechadura"],
         "tipo_macaneta": ["glaspeças", "termoquimica"],
         "puxador": ["simples", "puxador H", "sem puxador"],
         "entre_furos": ["300", "400", "500", "600", "800", "1000", "1200"],
-        "trinco": ["não", "sim"],
-        "tubo": ["não", "sim"]
+        "trinco": ["não", "sim"]
     },
     "condicoes_opcoes": {
         "tipo_kit_big": "\"{TIPO_KIT}\" == \"BIG\"",
@@ -30,73 +25,78 @@
         "entre_furos": "\"{PUXADOR}\" == \"PUXADOR H\""
     },
     "regras_padrao": {
-        "modelo_base": ["1 folha"],
-        "bandeira_sup": ["não"],
-        "bandeira_lat": ["não"],
-        "tubo": ["não"]
+        "tipo_kit": ["padrão"],
+        "fechadura": ["padrão", "maçaneta"],
+        "tipo_macaneta": ["glaspeças"],
+        "puxador": ["simples"],
+        "entre_furos": ["300", "400", "500", "600", "800"],
+        "trinco": ["não", "sim"]
     },
     "regras_ferragens": {},
     "componentes_composicao": [],
     "variaveis_calculo": [
         { "nome": "NF", "formula": "\"{MODELO_BASE}\" == \"2 FOLHAS\" ? 2 : 1" },
-        { "nome": "H_BANDEIRA", "formula": "\"{BANDEIRA_SUP}\" == \"SIM\" ? 400 : 0" },
-        { "nome": "L_LATERAL_TOTAL", "formula": "\"{BANDEIRA_LAT}\" == \"1 LATERAL\" ? 400 : (\"{BANDEIRA_LAT}\" == \"2 LATERAIS\" ? 800 : 0)" },
-        { "nome": "FOLGAS_W", "formula": "\"{NF}\" == \"2\" ? 20 : 15" },
-        { "nome": "H_PORTA", "formula": "{H} - {H_BANDEIRA} - 15" },
-        { "nome": "L_PORTA", "formula": "({L} - {L_LATERAL_TOTAL} - {FOLGAS_W}) / {NF}" },
-        { "nome": "QTD_LATERAL", "formula": "\"{BANDEIRA_LAT}\" == \"1 LATERAL\" ? 1 : (\"{BANDEIRA_LAT}\" == \"2 LATERAIS\" ? 2 : 0)" },
-        { "nome": "L_CADA_LATERAL", "formula": "{QTD_LATERAL} > 0 ? ({L_LATERAL_TOTAL} / {QTD_LATERAL}) : 0" },
-        
-        { "nome": "VISUAL_PORTA_W", "formula": "360 / {NF}" },
-        { "nome": "VISUAL_BANDEIRA_H", "formula": "\"{BANDEIRA_SUP}\" == \"SIM\" ? 80 : 0" },
-        { "nome": "VISUAL_PORTA_Y", "formula": "145 + {VISUAL_BANDEIRA_H}" },
-        { "nome": "VISUAL_PORTA_H", "formula": "320 - {VISUAL_BANDEIRA_H}" }
+        { "nome": "H_PORTA", "formula": "{H} - 15" },
+        { "nome": "L_PORTA", "formula": "\"{NF}\" == 2 ? ({L} - 20) / 2 : ({L} - 15)" }
     ],
     "ferragens_dinamicas": [
         { "cod": "1101", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
         { "cod": "1103", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
         { "cod": "1201", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
-        { "cod": "1013", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\" && \"{BANDEIRA_SUP}\" == \"SIM\"" },
         
         { "cod": "1520", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\"" },
-        { "cod": "1504", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{NF}\" == \"1\"" },
-        { "cod": "1531", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{NF}\" == \"2\"" },
+        { "cod": "1504", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{NF}\" == 1" },
+        { "cod": "1531", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{NF}\" == 2" },
         
         { "cod": "puxador_simples", "qtd": "{NF}", "condicao": "\"{PUXADOR}\" == \"SIMPLES\"" },
         { "cod": "puxador_h", "qtd": "{NF}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"" },
         { "cod": "1335", "qtd": "{NF}", "condicao": "\"{TRINCO}\" == \"SIM\"" }
     ],
     "vidros": [
-        { "tipo": "Porta Pivotante", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": "{NF}" },
-        { "tipo": "Bandeira Superior", "isMovel": false, "w": "{L}", "h": "{H_BANDEIRA}", "qtd": 1, "condicao": "\"{BANDEIRA_SUP}\" == \"SIM\"" },
-        { "tipo": "Fixo Lateral", "isMovel": false, "w": "{L_CADA_LATERAL}", "h": "{H_PORTA}", "qtd": "{QTD_LATERAL}", "condicao": "{QTD_LATERAL} > 0" }
+        { "tipo": "Porta Pivotante", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": "{NF}" }
     ],
-    "perfis": [
-        { "cod": "tubo_2x2", "tam": "{H}", "qtd": "\"{BANDEIRA_LAT}\" == \"1 LATERAL\" ? 1 : 2", "meta": "Tubo Fixação", "condicao": "\"{TUBO}\" == \"SIM\" && \"{BANDEIRA_LAT}\" != \"NÃO\"" }
-    ],
+    "perfis": [],
     "projeto_template": {
         "versao": "4.0",
         "canvas": {"w": 640, "h": 600},
         "elementos": [
             {"tipo": "bounding-box", "x": 140, "y": 145, "w": 360, "h": 320, "zIndex": 0, "texto": "ÁREA DO VÃO"},
+            {"tipo": "dim-h", "x": 140, "y": 475, "w": 360, "h": 10, "zIndex": 10, "texto": "Vão: {L}", "color": "#f43f5e", "borderColor": "#f43f5e", "fontSize": 12},
+            {"tipo": "dim-v", "x": 130, "y": 135, "w": 10, "h": 330, "zIndex": 10, "texto": "Vão: {H}", "color": "#f43f5e", "backgroundColor": "transparent", "borderColor": "#f43f5e", "fontSize": 12},
+            {"tipo": "text", "x": 295, "y": 355, "w": 30, "h": 7, "zIndex": 10, "texto": "1050", "rotation": 270, "color": "#f8fafc", "fontSize": 14},
+            {"tipo": "text", "x": 110, "y": 285, "w": 80, "h": 12, "zIndex": 10, "texto": "{H_PORTA}", "rotation": 270, "color": "#000", "fontSize": 16},
             
-            {"tipo": "rect", "x": 140, "y": 145, "w": 360, "h": "{VISUAL_BANDEIRA_H}", "zIndex": 10, "condicao": "\"{BANDEIRA_SUP}\" == \"SIM\"", "backgroundColor": "rgba(56, 189, 248, 0.1)", "borderColor": "#38bdf8"},
-            {"tipo": "text", "x": 140, "y": 185, "w": 360, "h": 15, "zIndex": 11, "texto": "Bandeira Sup.", "condicao": "\"{BANDEIRA_SUP}\" == \"SIM\"", "color": "#fde047"},
-            
-            {"tipo": "panel-movel", "x": 140, "y": "{VISUAL_PORTA_Y}", "w": "{VISUAL_PORTA_W}", "h": "{VISUAL_PORTA_H}", "zIndex": 10, "condicao": "true"},
-            {"tipo": "panel-movel", "x": "140 + {VISUAL_PORTA_W}", "y": "{VISUAL_PORTA_Y}", "w": "{VISUAL_PORTA_W}", "h": "{VISUAL_PORTA_H}", "zIndex": 10, "condicao": "\"{NF}\" == \"2\""},
-            
-            {"tipo": "text", "x": 140, "y": "285 + ({VISUAL_BANDEIRA_H}/2)", "w": "{VISUAL_PORTA_W}", "h": 15, "zIndex": 11, "texto": "Porta", "color": "#fde047"},
-            {"tipo": "text", "x": "140 + {VISUAL_PORTA_W}", "y": "285 + ({VISUAL_BANDEIRA_H}/2)", "w": "{VISUAL_PORTA_W}", "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{NF}\" == \"2\"", "color": "#fde047"},
-            
-            {"tipo": "dim-h", "x": 140, "y": 485, "w": 360, "h": 10, "zIndex": 10, "texto": "Vão: {L}", "color": "#f43f5e", "borderColor": "#f43f5e", "fontSize": 12},
-            {"tipo": "dim-v", "x": 120, "y": 145, "w": 10, "h": 320, "zIndex": 10, "texto": "Vão: {H}", "color": "#f43f5e", "backgroundColor": "transparent", "borderColor": "#f43f5e", "fontSize": 12},
-            
-            {"tipo": "circle", "x": 160, "y": "{VISUAL_PORTA_Y} + 10", "w": 12, "h": 12, "zIndex": 10, "backgroundColor": "#000"},
-            {"tipo": "circle", "x": "140 + {VISUAL_PORTA_W} - 25", "y": "{VISUAL_PORTA_Y} + 10", "w": 12, "h": 12, "zIndex": 10, "condicao": "\"{NF}\" == \"2\"", "backgroundColor": "#000"},
-            
-            {"tipo": "rect", "x": "140 + {VISUAL_PORTA_W} - 15", "y": "{VISUAL_PORTA_Y} + ({VISUAL_PORTA_H}/2) - 20", "w": 15, "h": 40, "zIndex": 10, "condicao": "\"{FECHADURA}\" == \"PADRÃO\"", "backgroundColor": "#000"},
-            {"tipo": "rect", "x": "140 + {VISUAL_PORTA_W}", "y": "{VISUAL_PORTA_Y} + ({VISUAL_PORTA_H}/2) - 20", "w": 15, "h": 40, "zIndex": 10, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{NF}\" == \"2\"", "backgroundColor": "#000"}
+            {"tipo": "panel-movel", "x": 140, "y": 145, "w": 360, "h": 320, "zIndex": 10, "condicao": "\"{NF}\" == 1"},
+            {"tipo": "text", "x": 140, "y": 165, "w": 360, "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{NF}\" == 1", "color": "#fde047"},
+            {"tipo": "text", "x": 140, "y": 180, "w": 360, "h": 15, "zIndex": 11, "texto": "1 Pç", "condicao": "\"{NF}\" == 1", "color": "#fde047"},
+            {"tipo": "text", "x": 140, "y": 450, "w": 360, "h": 15, "zIndex": 11, "texto": "{L_PORTA}", "condicao": "\"{NF}\" == 1", "color": "#000", "fontSize": 16},
+            {"tipo": "text", "x": 505, "y": 285, "w": 30, "h": 7, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{NF}\" == 1 && \"{PUXADOR}\" == \"PUXADOR H\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            {"tipo": "rect", "x": 485, "y": 265, "w": 15, "h": 40, "zIndex": 10, "condicao": "\"{NF}\" == 1 && \"{FECHADURA}\" == \"PADRÃO\"", "backgroundColor": "#000", "borderColor": "#000"},
+            {"tipo": "text", "x": 465, "y": 245, "w": 40, "h": 15, "zIndex": 10, "texto": "1520", "condicao": "\"{NF}\" == 1 && \"{FECHADURA}\" == \"PADRÃO\"", "color": "#000", "fontSize": 14},
+            {"tipo": "circle", "x": 465, "y": 285, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{NF}\" == 1 && \"{PUXADOR}\" == \"SIMPLES\"", "backgroundColor": "#000"},
+            {"tipo": "circle", "x": 465, "y": 450, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{NF}\" == 1 && \"{TRINCO}\" == \"SIM\"", "backgroundColor": "#000"},
+            {"tipo": "text", "x": 455, "y": 440, "w": 20, "h": 10, "zIndex": 10, "texto": "335", "condicao": "\"{NF}\" == 1 && \"{TRINCO}\" == \"SIM\"", "color": "#000", "fontSize": 10},
+
+            {"tipo": "panel-movel", "x": 140, "y": 145, "w": 180, "h": 320, "zIndex": 10, "condicao": "\"{NF}\" == 2"},
+            {"tipo": "panel-movel", "x": 320, "y": 145, "w": 180, "h": 320, "zIndex": 10, "condicao": "\"{NF}\" == 2"},
+            {"tipo": "text", "x": 140, "y": 165, "w": 180, "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{NF}\" == 2", "color": "#fde047"},
+            {"tipo": "text", "x": 140, "y": 180, "w": 180, "h": 15, "zIndex": 11, "texto": "1 Pç", "condicao": "\"{NF}\" == 2", "color": "#fde047"},
+            {"tipo": "text", "x": 320, "y": 165, "w": 180, "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{NF}\" == 2", "color": "#fde047"},
+            {"tipo": "text", "x": 320, "y": 180, "w": 180, "h": 15, "zIndex": 11, "texto": "1 Pç", "condicao": "\"{NF}\" == 2", "color": "#fde047"},
+            {"tipo": "text", "x": 140, "y": 450, "w": 180, "h": 15, "zIndex": 11, "texto": "{L_PORTA}", "condicao": "\"{NF}\" == 2", "color": "#000", "fontSize": 16},
+            {"tipo": "text", "x": 320, "y": 450, "w": 180, "h": 15, "zIndex": 11, "texto": "{L_PORTA}", "condicao": "\"{NF}\" == 2", "color": "#000", "fontSize": 16},
+            {"tipo": "text", "x": 325, "y": 285, "w": 30, "h": 7, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{NF}\" == 2 && \"{PUXADOR}\" == \"PUXADOR H\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            {"tipo": "text", "x": 365, "y": 285, "w": 30, "h": 7, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{NF}\" == 2 && \"{PUXADOR}\" == \"PUXADOR H\"", "rotation": 270, "color": "#000", "fontSize": 12},
+            {"tipo": "rect", "x": 305, "y": 265, "w": 15, "h": 40, "zIndex": 10, "condicao": "\"{NF}\" == 2 && \"{FECHADURA}\" == \"PADRÃO\"", "backgroundColor": "#000", "borderColor": "#000"},
+            {"tipo": "rect", "x": 320, "y": 265, "w": 15, "h": 40, "zIndex": 10, "condicao": "\"{NF}\" == 2 && \"{FECHADURA}\" == \"PADRÃO\"", "backgroundColor": "#000", "borderColor": "#000"},
+            {"tipo": "text", "x": 285, "y": 245, "w": 40, "h": 15, "zIndex": 10, "texto": "1520", "condicao": "\"{NF}\" == 2 && \"{FECHADURA}\" == \"PADRÃO\"", "color": "#000", "fontSize": 14},
+            {"tipo": "text", "x": 335, "y": 245, "w": 40, "h": 15, "zIndex": 10, "texto": "1531", "condicao": "\"{NF}\" == 2 && \"{FECHADURA}\" == \"PADRÃO\"", "color": "#000", "fontSize": 14},
+            {"tipo": "circle", "x": 285, "y": 285, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{NF}\" == 2 && \"{PUXADOR}\" == \"SIMPLES\"", "backgroundColor": "#000"},
+            {"tipo": "circle", "x": 355, "y": 285, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{NF}\" == 2 && \"{PUXADOR}\" == \"SIMPLES\"", "backgroundColor": "#000"},
+            {"tipo": "circle", "x": 305, "y": 450, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{NF}\" == 2 && \"{TRINCO}\" == \"SIM\"", "backgroundColor": "#000"},
+            {"tipo": "circle", "x": 335, "y": 450, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{NF}\" == 2 && \"{TRINCO}\" == \"SIM\"", "backgroundColor": "#000"},
+            {"tipo": "text", "x": 295, "y": 440, "w": 20, "h": 10, "zIndex": 10, "texto": "335", "condicao": "\"{NF}\" == 2 && \"{TRINCO}\" == \"SIM\"", "color": "#000", "fontSize": 10},
+            {"tipo": "text", "x": 325, "y": 440, "w": 20, "h": 10, "zIndex": 10, "texto": "335", "condicao": "\"{NF}\" == 2 && \"{TRINCO}\" == \"SIM\"", "color": "#000", "fontSize": 10}
         ]
     }
 }
