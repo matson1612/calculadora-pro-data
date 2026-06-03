@@ -29,7 +29,7 @@
         "fechadura": ["padrão", "maçaneta"],
         "tipo_macaneta": ["glaspeças"],
         "puxador": ["simples"],
-        "entre_furos": ["300", "400", "500", "600", "800"],
+        "entre_furos": ["300", "400", "500", "600", "800", "1000", "1200"],
         "trinco": ["não", "sim"]
     },
     "regras_ferragens": {},
@@ -37,25 +37,22 @@
     "variaveis_calculo": [
         { "nome": "NF", "formula": "\"{MODELO_BASE}\" == \"2 FOLHAS\" ? 2 : 1" },
         { "nome": "H_PORTA", "formula": "{H} - 15" },
-        { "nome": "L_PORTA", "formula": "\"{NF}\" == 2 ? ({L} - 20) / 2 : ({L} - 15)" }
+        { "nome": "L_PORTA", "formula": "\"{NF}\" == 2 ? ({L} - 20) / 2 : ({L} - 15)" },
+        { "nome": "HFURO", "formula": "1050 - ({ENTRE_FUROS} / 2)" }
     ],
     "ferragens_dinamicas": [
-        { "cod": "1101", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
-        { "cod": "1103", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
-        { "cod": "1201", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
         
-        { "cod": "1520", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\"" },
-        { "cod": "1504", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{NF}\" == 1" },
-        { "cod": "1531", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{NF}\" == 2" },
+        // ⚠️ COLE AQUI O SEU ARRAY ORIGINAL DE FERRAGENS (ex: 1101, 1520, PUXADORES, etc.)
         
-        { "cod": "puxador_simples", "qtd": "{NF}", "condicao": "\"{PUXADOR}\" == \"SIMPLES\"" },
-        { "cod": "puxador_h", "qtd": "{NF}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"" },
-        { "cod": "1335", "qtd": "{NF}", "condicao": "\"{TRINCO}\" == \"SIM\"" }
     ],
     "vidros": [
         { "tipo": "Porta Pivotante", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": "{NF}" }
     ],
-    "perfis": [],
+    "perfis": [
+
+        // ⚠️ COLE AQUI A SUA CANTONEIRA ORIGINAL QUE DEVE IR PARA O MOTOR DE OTIMIZAÇÃO
+
+    ],
     "projeto_template": {
         "versao": "4.0",
         "canvas": {"w": 640, "h": 600},
