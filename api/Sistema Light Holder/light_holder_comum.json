@@ -22,7 +22,7 @@
     "variaveis_calculo": [
         { "nome": "NF", "formula": "{FOLHAS}" },
         { "nome": "NPUX", "formula": "\"{ABERTURA_DUPLA}\" == \"SIM\" ? 2 : 1" },
-        { "nome": "DPUX", "formula": "\"{PUXADOR}\" == \"NÃO\" || \"{PUXADOR}\" == \"SEM PUXADOR\" ? 52 : {DISTANCIA_PUXADOR}+20" },
+        { "nome": "DPUX", "formula": "\"{PUXADOR}\" == \"NÃO\" || \"{PUXADOR}\" == \"SEM PUXADOR\" ? 68 : {DISTANCIA_PUXADOR}+20" },
         { "nome": "H_VIDRO", "formula": "{H} - 60" },
         { "nome": "L_FIXO", "formula": "({L} + 15 * ({NF} - 1) - {DPUX} * {NPUX}) / {NF}" },
         { "nome": "L_MOVEL", "formula": "{L_FIXO} + {DPUX}" },
