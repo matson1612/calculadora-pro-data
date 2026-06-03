@@ -8,7 +8,7 @@
         "folhas": ["2", "3", "4", "5", "6", "7", "8", "9", "10"],
         "abertura_dupla": ["não", "sim"],
         "fechadura": ["3530", "não"],
-        "puxador": ["não", "simples", "puxador h"],
+        "puxador": ["não", "puxador h"],
         "distancia_puxador": ["50", "80", "100", "150"],
         "entre_furos": ["300", "400", "500", "600", "800", "1000", "1200"]
     },
@@ -39,7 +39,7 @@
         { "cod": "batente", "qtd": "{NF} * 2" },
         { "cod": "3530", "qtd": "{QTD_FECH}", "condicao": "\"{FECHADURA}\" == \"3530\"" },
         { "cod": "3230", "qtd": "{QTD_FECH}", "condicao": "\"{FECHADURA}\" == \"3530\"" },
-        { "cod": "puxador_simples", "qtd": "{QTD_FECH}", "condicao": "\"{PUXADOR}\" == \"SIMPLES\"" },
+       
         { "cod": "puxador_h", "qtd": "{QTD_FECH}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"" }
     ],
     "vidros": [
