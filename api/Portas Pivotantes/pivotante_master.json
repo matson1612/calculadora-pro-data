@@ -40,7 +40,17 @@
         { "nome": "L_PORTA", "formula": "\"{MODELO_BASE}\" == \"2 FOLHAS\" ? ({L} - 20) / 2 : ({L} - 15)" },
         { "nome": "HFURO", "formula": "1050 - ({ENTRE_FUROS} / 2)" }
     ],
-    "ferragens_dinamicas": [],
+    "ferragens_dinamicas": [
+        { "cod": "1101", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
+        { "cod": "1103", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
+        { "cod": "1201", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
+        { "cod": "1520", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\"" },
+        { "cod": "1504", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{MODELO_BASE}\" == \"1 FOLHA\"" },
+        { "cod": "1531", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"" },
+        { "cod": "puxador_simples", "qtd": "{NF}", "condicao": "\"{PUXADOR}\" == \"SIMPLES\"" },
+        { "cod": "puxador_h", "qtd": "{NF}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"" },
+        { "cod": "1335", "qtd": "{NF}", "condicao": "\"{TRINCO}\" == \"SIM\"" }
+    ],
     "vidros": [
         { "tipo": "Porta Pivotante", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": "{NF}" }
     ],
