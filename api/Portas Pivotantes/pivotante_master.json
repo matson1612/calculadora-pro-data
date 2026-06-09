@@ -1,104 +1,285 @@
 {
-    "id": "porta_piv_master",
-    "nome": "Porta Pivotante",
+    "id": "porta_piv_dinamica",
+    "nome": "Porta Pivotante (Motor Gráfico)",
     "isPivotante": true,
     "folhas": 0,
     "espessura": "8mm",
     "refKit": null,
-    "presets": [
-        { "id": "piv_1f", "nome": "1 Folha", "icone": "fa-door-closed", "opcoes": { "modelo_base": "1 folha" } },
-        { "id": "piv_2f", "nome": "2 Folhas", "icone": "fa-door-open", "opcoes": { "modelo_base": "2 folhas" } }
-    ],
     "opcoes": {
-        "modelo_base": ["1 folha", "2 folhas"],
-        "tipo_kit": ["padrão", "big"],
-        "tipo_kit_big": ["glaspeças", "termoquimica"],
-        "fechadura": ["padrão", "maçaneta", "sem fechadura"],
-        "tipo_macaneta": ["glaspeças", "termoquimica"],
-        "puxador": ["simples", "puxador H", "sem puxador"],
-        "entre_furos": ["300", "400", "500", "600", "800", "1000", "1200"],
-        "trinco": ["não", "sim"]
+        "modelo_base": [
+            "1 folha",
+            "2 folhas"
+        ],
+        "tipo_kit": [
+            "padrão",
+            "big"
+        ],
+        "tipo_kit_big": [
+            "glaspeças",
+            "termoquimica"
+        ],
+        "fechadura": [
+            "padrão",
+            "maçaneta",
+            "sem fechadura"
+        ],
+        "tipo_macaneta": [
+            "glaspeças",
+            "termoquimica"
+        ],
+        "puxador": [
+            "simples",
+            "puxador h",
+            "sem puxador"
+        ],
+        "entre_furos": [
+            "300",
+            "400",
+            "500",
+            "600",
+            "800",
+            "1000",
+            "1200"
+        ],
+        "trinco": [
+            "não",
+            "sim"
+        ],
+        "bandeira_sup": [
+            "não",
+            "sim"
+        ],
+        "bandeira_lateral_e": [
+            "não",
+            "sim"
+        ],
+        "bandeira_lateral_d": [
+            "não",
+            "sim"
+        ],
+        "tubos": [
+            "não",
+            "sim"
+        ],
+        "divisao_bandeira_d": [
+            "1",
+            "2",
+            "3"
+        ],
+        "divisao_bandeira_e": [
+            "1",
+            "2",
+            "3"
+        ],
+        "variação_tubos": [
+            "apenas horizontal",
+            "apenas vertical",
+            "horizontal completo + vertical",
+            "vertical completo + horizontal",
+            "vertical completo + horizontal completo"
+        ],
+        "divisao_bandeira_sup": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "desconto_padrao_fixos": [
+            "25",
+            "30",
+            "55"
+        ]
     },
     "condicoes_opcoes": {
-        "tipo_kit_big": "\"{TIPO_KIT}\" == \"BIG\"",
-        "tipo_macaneta": "\"{FECHADURA}\" == \"MAÇANETA\"",
-        "entre_furos": "\"{PUXADOR}\" == \"PUXADOR H\""
+        "divisao_bandeira_d": "\"{BANDEIRA_LATERAL_D}\" == \"SIM\"",
+        "divisao_bandeira_e": "\"{BANDEIRA_LATERAL_E}\" == \"SIM\"",
+        "variação_tubos": "\"{TUBOS}\" == \"SIM\"",
+        "divisao_bandeira_sup": "( \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{TUBOS}\" == \"SIM\" && \"{BANDEIRA_SUP}\" == \"SIM\" )",
+        "tubos": "( \"{BANDEIRA_SUP}\" == \"SIM\" || \"{BANDEIRA_LATERAL_E}\" == \"SIM\" || \"{BANDEIRA_LATERAL_D}\" == \"SIM\" )"
     },
     "regras_padrao": {
-        "tipo_kit": ["padrão"],
-        "fechadura": ["padrão", "maçaneta"],
-        "tipo_macaneta": ["glaspeças"],
-        "puxador": ["simples"],
-        "entre_furos": ["300", "400", "500", "600", "800"],
-        "trinco": ["não", "sim"]
+        "modelo_base": [
+            "1 folha"
+        ],
+        "bandeira_sup": [
+            "não"
+        ],
+        "tubos": [
+            "não"
+        ]
     },
     "regras_ferragens": {},
     "componentes_composicao": [],
     "variaveis_calculo": [
-        { "nome": "NF", "formula": "\"{MODELO_BASE}\" == \"2 FOLHAS\" ? 2 : 1" },
-        { "nome": "H_PORTA", "formula": "{H} - 15" },
-        { "nome": "L_PORTA", "formula": "\"{MODELO_BASE}\" == \"2 FOLHAS\" ? ({L} - 20) / 2 : ({L} - 15)" },
-        { "nome": "HFURO", "formula": "1050 - ({ENTRE_FUROS} / 2)" }
+        {"nome":"X0","formula":"300"},
+        {"nome":"WP","formula":"160"},
+        {"nome":"HP","formula":"330"},
+        {"nome":"NF","formula":"\"{MODELO_BASE}\" == \"1 FOLHA\" ? 1 : 2"},
+        {"nome":"ABS","formula":"(\"{BANDEIRA_SUP}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL\") ? 70 : (\"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL\" && \"{BANDEIRA_SUP}\" == \"SIM\") ? 70 : (\"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL\" && \"{BANDEIRA_SUP}\" == \"SIM\") ? 10 : (\"{TUBOS}\" == \"NÃO\" && \"{BANDEIRA_SUP}\" == \"SIM\") ? 70 : (\"{BANDEIRA_SUP}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" && \"{TUBOS}\" == \"SIM\") ? 70 : 0"},
+        {"nome":"DT","formula":"(\"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" || \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL\" || \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL COMPLETO\") ? 10 : 0"},
+        {"nome":"HTUBO","formula":"(\"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" && \"{BANDEIRA_SUP}\" == \"SIM\") ? 70 : (\"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL\" && \"{BANDEIRA_SUP}\" == \"SIM\") ? 70 : (\"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL COMPLETO\" && \"{BANDEIRA_SUP}\" == \"SIM\") ? 70 : 0"},
+        {"nome":"LTUBO","formula":"(\"{VARIAÇÃO_TUBOS}\" == \"APENAS HORIZONTAL\" || \"{VARIAÇÃO_TUBOS}\" == \"HORIZONTAL COMPLETO + VERTICAL\" || \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL COMPLETO\") ? 70 : 0"},
+        {"nome":"ME","formula":"\"{BANDEIRA_LATERAL_E}\" == \"SIM\" ? 1 : 0"},
+        {"nome":"MD","formula":"\"{BANDEIRA_LATERAL_D}\" == \"SIM\" ? 1 : 0"},
+        {"nome":"ABC","formula":"(\"{VARIAÇÃO_TUBOS}\" == \"HORIZONTAL COMPLETO + VERTICAL\" && \"{TUBOS}\" == \"SIM\") ? 10 : (\"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" && \"{TUBOS}\" == \"SIM\") ? 10 : 0"},
+        {"nome":"LBS","formula":"(\"{TUBOS}\" == \"NÃO\" || \"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" || \"{VARIAÇÃO_TUBOS}\" == \"HORIZONTAL COMPLETO + VERTICAL\") ? {WP}*{NF} : (\"{TUBOS}\" == \"SIM\" || \"{VARIAÇÃO_TUBOS}\" == \"APENAS HORIZONTAL\" || \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL\" || \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL COMPLETO\") ? ({WP}*{NF}+{ABC}*{MD}+{ABC}*{ME})/{DIVISAO_BANDEIRA_SUP} : 0"},
+        {"nome":"DTH","formula":"(\"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{TUBOS}\" == \"SIM\") ? 10 : 0"},
+        {"nome":"L_FIXO_E","formula":"\"{BANDEIRA_LATERAL_E}\" == \"SIM\" ? {L_BANDEIRA_E} : 0"},
+        {"nome":"L_FIXO_D","formula":"\"{BANDEIRA_LATERAL_D}\" == \"SIM\" ? {L_BANDEIRA_D} : 0"},
+        {"nome":"LV_PORTA","formula":"{L}-{L_BANDEIRA_D}-{L_BANDEIRA_E}"},
+        {"nome":"HV_PORTA","formula":"{H}-{H_BANDEIRA_SUP}"},
+        {"nome":"L_PORTA","formula":"\"{MODELO_BASE}\" == \"1 FOLHA\" ? {LV_PORTA}-10 : ({LV_PORTA}-15)/2"},
+        {"nome":"H_PORTA","formula":"{HV_PORTA}-15"},
+        {"nome":"LF_FIXO_D","formula":"(\"{BANDEIRA_LATERAL_D}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS HORIZONTAL\") ? ({L_BANDEIRA_D}-{DESCONTO_PADRAO_FIXOS}-50)/{DIVISAO_BANDEIRA_D} : (\"{BANDEIRA_LATERAL_D}\" == \"SIM\" && \"{TUBOS}\" == \"NÃO\") ? ({L_BANDEIRA_D}-({DESCONTO_PADRAO_FIXOS}/2))/{DIVISAO_BANDEIRA_D} : (\"{BANDEIRA_LATERAL_D}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" == \"APENAS HORIZONTAL\") ? ({L_BANDEIRA_D}-({DESCONTO_PADRAO_FIXOS}/2))/{DIVISAO_BANDEIRA_D} : 0"},
+        {"nome":"LF_FIXO_E","formula":"(\"{BANDEIRA_LATERAL_E}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS HORIZONTAL\") ? ({L_BANDEIRA_E}-{DESCONTO_PADRAO_FIXOS}-50)/{DIVISAO_BANDEIRA_E} : (\"{BANDEIRA_LATERAL_E}\" == \"SIM\" && \"{TUBOS}\" == \"NÃO\") ? ({L_BANDEIRA_E}-({DESCONTO_PADRAO_FIXOS}/2))/{DIVISAO_BANDEIRA_E} : (\"{BANDEIRA_LATERAL_E}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" == \"APENAS HORIZONTAL\") ? ({L_BANDEIRA_E}-({DESCONTO_PADRAO_FIXOS}/2))/{DIVISAO_BANDEIRA_E} : 0"},
+        {"nome":"VAO_BANDEIRA_D","formula":"{L_BANDEIRA_D}-{DT}*{MD}*5"},
+        {"nome":"VAO_BANDEIRA_E","formula":"{L_BANDEIRA_E}-{DT}*{ME}*5"},
+        {"nome":"BAND_SUP_UNICA","formula":"{L}-{L_BANDEIRA_D}-{L_BANDEIRA_E}-15"},
+        {"nome":"BAND_SUP_DIV","formula":"(\"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL COMPLETO\" && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\") ? ({L}-{LF_FIXO_E}*{DIVISAO_BANDEIRA_E}-{LF_FIXO_D}*{DIVISAO_BANDEIRA_D}-{DESCONTO_PADRAO_FIXOS})/{DIVISAO_BANDEIRA_SUP} : ({LV_PORTA}-{DESCONTO_PADRAO_FIXOS})/{DIVISAO_BANDEIRA_SUP}"},
+        {"nome":"HFIXO_1","formula":"(\"{VARIAÇÃO_TUBOS}\" == \"APENAS HORIZONTAL\" || \"{VARIAÇÃO_TUBOS}\" == \"HORIZONTAL COMPLETO + VERTICAL\" || \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL COMPLETO\") ? {HV_PORTA}-{DESCONTO_PADRAO_FIXOS} : {H}-{DESCONTO_PADRAO_FIXOS}"},
+        {"nome":"HV_BAND_SUP","formula":"{H_BANDEIRA_SUP}-{DTH}*5"},
+        {"nome":"HBAND","formula":"\"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" ? {HV_BAND_SUP}-{DESCONTO_PADRAO_FIXOS} : {HV_BAND_SUP}-{DESCONTO_PADRAO_FIXOS}/2"},
+        {"nome":"DT2","formula":"(\"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" || \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL\" || \"{VARIAÇÃO_TUBOS}\" == \"VERTICAL COMPLETO + HORIZONTAL COMPLETO\" || \"{VARIAÇÃO_TUBOS}\" == \"APENAS HORIZONTAL\" || \"{VARIAÇÃO_TUBOS}\" == \"HORIZONTAL COMPLETO + VERTICAL\") ? 0 : 10"},
+        {"nome":"AAPH","formula":"\"{BANDEIRA_SUP}\" == \"SIM\" ? 70 : 0"}
     ],
     "ferragens_dinamicas": [
-        { "cod": "1101", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
-        { "cod": "1103", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
-        { "cod": "1201", "qtd": "{NF}", "condicao": "\"{TIPO_KIT}\" == \"PADRÃO\"" },
-        { "cod": "1520", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\"" },
-        { "cod": "1504", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{MODELO_BASE}\" == \"1 FOLHA\"" },
-        { "cod": "1531", "qtd": 1, "condicao": "\"{FECHADURA}\" == \"PADRÃO\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"" },
-        { "cod": "puxador_simples", "qtd": "{NF}", "condicao": "\"{PUXADOR}\" == \"SIMPLES\"" },
-        { "cod": "puxador_h", "qtd": "{NF}", "condicao": "\"{PUXADOR}\" == \"PUXADOR H\"" },
-        { "cod": "1335", "qtd": "{NF}", "condicao": "\"{TRINCO}\" == \"SIM\"" }
+
     ],
     "vidros": [
-        { "tipo": "Porta Pivotante", "isMovel": true, "w": "{L_PORTA}", "h": "{H_PORTA}", "qtd": "{NF}" }
+        {"tipo":"PORTA1","isMovel":true,"w":"{L_PORTA}","h":"{H_PORTA}","qtd":1},
+        {"tipo":"PORTA2","isMovel":true,"w":"{L_PORTA}","h":"{H_PORTA}","qtd":1,"condicao":"\"{MODELO_BASE}\"=\"2 FOLHAS\""},
+        {"tipo":"FIXO_D","isMovel":false,"w":"{LF_FIXO_D}","h":"{HF_FIXO_D}","qtd":"{DIVISAO_BANDEIRA_D}"},
+        {"tipo":"FIXO_E","isMovel":false,"w":"{LF_FIXO_E}","h":"{HF_FIXO_D}","qtd":"{DIVISAO_BANDEIRA_E}"}
+    ],
+    "medidas_adicionais": [
+        {"nome":"H_BANDEIRA_SUP","label":"Altura da Bandeira Superior","default":400,"condicao":"{BANDEIRA_SUP}==\"SIM\""},
+        {"nome":"L_BANDEIRA_E","label":"Largura da Lateral Esquerda","default":400,"condicao":"{BANDEIRA_LATERAL_E}==\"SIM\""},
+        {"nome":"L_BANDEIRA_D","label":"Largura da Lateral Direita","default":400,"condicao":"{BANDEIRA_LATERAL_D}==\"SIM\""}
     ],
     "perfis": [
-        { "cod": "cantoneira_abas_iguais", "tam": "{H}", "qtd": 2, "meta": "Cantoneira lateral", "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\"" },
-        { "cod": "cantoneira_abas_iguais", "tam": "{H}", "qtd": 2, "meta": "Cantoneira lateral", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"" }
+
     ],
     "projeto_template": {
         "versao": "4.0",
-        "canvas": {"w": 640, "h": 600},
+        "canvas": {"w":640,"h":600},
         "elementos": [
-            { "tipo": "bounding-box", "x": 140, "y": 145, "w": 360, "h": 320, "zIndex": 0, "texto": "ÁREA DO VÃO" },
-            { "tipo": "dim-h", "x": 140, "y": 475, "w": 360, "h": 10, "zIndex": 10, "texto": "Vão: {L}", "color": "#f43f5e", "borderColor": "#f43f5e", "fontSize": 12 },
-            { "tipo": "dim-v", "x": 130, "y": 135, "w": 10, "h": 330, "zIndex": 10, "texto": "Vão: {H}", "color": "#f43f5e", "backgroundColor": "transparent", "borderColor": "#f43f5e", "fontSize": 12 },
-            { "tipo": "text", "x": 295, "y": 355, "w": 30, "h": 7, "zIndex": 10, "texto": "1050", "rotation": 270, "color": "#f8fafc", "fontSize": 14 },
-            { "tipo": "text", "x": 110, "y": 285, "w": 80, "h": 12, "zIndex": 10, "texto": "{H_PORTA}", "rotation": 270, "color": "#000", "fontSize": 16 },
-            
-            { "tipo": "panel-movel", "x": 140, "y": 145, "w": 360, "h": 320, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\"" },
-            { "tipo": "text", "x": 140, "y": 165, "w": 360, "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\"", "color": "#fde047" },
-            { "tipo": "text", "x": 140, "y": 180, "w": 360, "h": 15, "zIndex": 11, "texto": "1 Pç", "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\"", "color": "#fde047" },
-            { "tipo": "text", "x": 140, "y": 450, "w": 360, "h": 15, "zIndex": 11, "texto": "{L_PORTA}", "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\"", "color": "#000", "fontSize": 16 },
-            { "tipo": "text", "x": 505, "y": 285, "w": 30, "h": 7, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\" && \"{PUXADOR}\" == \"PUXADOR H\"", "rotation": 270, "color": "#000", "fontSize": 12 },
-            { "tipo": "rect", "x": 485, "y": 265, "w": 15, "h": 40, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\" && \"{FECHADURA}\" == \"PADRÃO\"", "backgroundColor": "#000", "borderColor": "#000" },
-            { "tipo": "text", "x": 465, "y": 245, "w": 40, "h": 15, "zIndex": 10, "texto": "1520", "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\" && \"{FECHADURA}\" == \"PADRÃO\"", "color": "#000", "fontSize": 14 },
-            { "tipo": "circle", "x": 465, "y": 285, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\" && \"{PUXADOR}\" == \"SIMPLES\"", "backgroundColor": "#000" },
-            { "tipo": "circle", "x": 465, "y": 450, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\" && \"{TRINCO}\" == \"SIM\"", "backgroundColor": "#000" },
-            { "tipo": "text", "x": 455, "y": 440, "w": 20, "h": 10, "zIndex": 10, "texto": "335", "condicao": "\"{MODELO_BASE}\" == \"1 FOLHA\" && \"{TRINCO}\" == \"SIM\"", "color": "#000", "fontSize": 10 },
-
-            { "tipo": "panel-movel", "x": 140, "y": 145, "w": 180, "h": 320, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"" },
-            { "tipo": "panel-movel", "x": 320, "y": 145, "w": 180, "h": 320, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"" },
-            { "tipo": "text", "x": 140, "y": 165, "w": 180, "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"", "color": "#fde047" },
-            { "tipo": "text", "x": 140, "y": 180, "w": 180, "h": 15, "zIndex": 11, "texto": "1 Pç", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"", "color": "#fde047" },
-            { "tipo": "text", "x": 320, "y": 165, "w": 180, "h": 15, "zIndex": 11, "texto": "Porta", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"", "color": "#fde047" },
-            { "tipo": "text", "x": 320, "y": 180, "w": 180, "h": 15, "zIndex": 11, "texto": "1 Pç", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"", "color": "#fde047" },
-            { "tipo": "text", "x": 140, "y": 450, "w": 180, "h": 15, "zIndex": 11, "texto": "{L_PORTA}", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"", "color": "#000", "fontSize": 16 },
-            { "tipo": "text", "x": 320, "y": 450, "w": 180, "h": 15, "zIndex": 11, "texto": "{L_PORTA}", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\"", "color": "#000", "fontSize": 16 },
-            { "tipo": "text", "x": 325, "y": 285, "w": 30, "h": 7, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{PUXADOR}\" == \"PUXADOR H\"", "rotation": 270, "color": "#000", "fontSize": 12 },
-            { "tipo": "text", "x": 365, "y": 285, "w": 30, "h": 7, "zIndex": 10, "texto": "{HFURO}", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{PUXADOR}\" == \"PUXADOR H\"", "rotation": 270, "color": "#000", "fontSize": 12 },
-            { "tipo": "rect", "x": 305, "y": 265, "w": 15, "h": 40, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{FECHADURA}\" == \"PADRÃO\"", "backgroundColor": "#000", "borderColor": "#000" },
-            { "tipo": "rect", "x": 320, "y": 265, "w": 15, "h": 40, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{FECHADURA}\" == \"PADRÃO\"", "backgroundColor": "#000", "borderColor": "#000" },
-            { "tipo": "text", "x": 285, "y": 245, "w": 40, "h": 15, "zIndex": 10, "texto": "1520", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{FECHADURA}\" == \"PADRÃO\"", "color": "#000", "fontSize": 14 },
-            { "tipo": "text", "x": 335, "y": 245, "w": 40, "h": 15, "zIndex": 10, "texto": "1531", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{FECHADURA}\" == \"PADRÃO\"", "color": "#000", "fontSize": 14 },
-            { "tipo": "circle", "x": 285, "y": 285, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{PUXADOR}\" == \"SIMPLES\"", "backgroundColor": "#000" },
-            { "tipo": "circle", "x": 355, "y": 285, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{PUXADOR}\" == \"SIMPLES\"", "backgroundColor": "#000" },
-            { "tipo": "circle", "x": 305, "y": 450, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{TRINCO}\" == \"SIM\"", "backgroundColor": "#000" },
-            { "tipo": "circle", "x": 335, "y": 450, "w": 10, "h": 10, "zIndex": 10, "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{TRINCO}\" == \"SIM\"", "backgroundColor": "#000" },
-            { "tipo": "text", "x": 295, "y": 440, "w": 20, "h": 10, "zIndex": 10, "texto": "335", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{TRINCO}\" == \"SIM\"", "color": "#000", "fontSize": 10 },
-            { "tipo": "text", "x": 325, "y": 440, "w": 20, "h": 10, "zIndex": 10, "texto": "335", "condicao": "\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{TRINCO}\" == \"SIM\"", "color": "#000", "fontSize": 10 }
+            {"id":"80lyoz056","tipo":"panel-movel","x":"{X0}","y":110,"zIndex":10,"w":"{WP}","h":"{HP}","backgroundColor":"rgba(56, 189, 248, 0.15)","borderColor":"#38bdf8","color":"#fde047","tempStartX":300,"tempStartY":110,"tempStartW":180,"tempStartH":330},
+            {"id":"2h7t5pwd4","tipo":"panel-movel","x":"{X0}+{WP}","y":110,"zIndex":10,"w":160,"h":330,"backgroundColor":"rgba(56, 189, 248, 0.15)","borderColor":"#38bdf8","color":"#fde047","tempStartX":460,"tempStartY":110,"tempStartW":180,"tempStartH":330,"condicao":"\"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"khqrv42s6","tipo":"panel-fixed","x":"{X0}+{WP}*{NF}+{DT}","y":"110-{ABS}","zIndex":10,"w":70,"h":"330+{ABS}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":630,"tempStartY":100,"tempStartW":70,"tempStartH":420,"condicao":"{BANDEIRA_LATERAL_D}==\"SIM\""},
+            {"id":"7xwc3eos6","tipo":"panel-fixed","x":"{X0}-{DT2}","y":40,"zIndex":10,"w":"{LBS}","h":"70-{DTH}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":300,"tempStartY":40,"tempStartW":320,"tempStartH":60,"condicao":"{BANDEIRA_SUP}==\"SIM\""},
+            {"id":"25bpzrzk9","tipo":"panel-fixed","x":"{X0}-70-{DT}","y":"110-{ABS}","zIndex":10,"w":70,"h":"330+{ABS}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":230,"tempStartY":110,"tempStartW":70,"tempStartH":420,"condicao":"{BANDEIRA_LATERAL_E}==\"SIM\""},
+            {"id":"pn75y9fks","tipo":"panel-fixed","x":"{X0}+{WP}*{NF}+140+{DT}","y":"110-{ABS}","zIndex":10,"w":70,"h":"330+{ABS}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":760,"tempStartY":110,"tempStartW":70,"tempStartH":420,"condicao":"{BANDEIRA_LATERAL_D}==\"SIM\" && ({DIVISAO_BANDEIRA_D}==\"3\")"},
+            {"id":"qz1mx0oxj","tipo":"panel-fixed","x":"{X0}+{WP}*{NF}+70+{DT}","y":"110-{ABS}","zIndex":10,"w":70,"h":"330+{ABS}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":480,"tempStartY":110,"tempStartW":70,"tempStartH":420,"condicao":"{BANDEIRA_LATERAL_D}==\"SIM\" && ({DIVISAO_BANDEIRA_D}==\"2\" || {DIVISAO_BANDEIRA_D}==\"3\")"},
+            {"id":"m8rh46l4k","tipo":"panel-fixed","x":"{X0}-210-{DT}","y":"110-{ABS}","zIndex":10,"w":70,"h":"330+{ABS}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":80,"tempStartY":40,"tempStartW":70,"tempStartH":420,"condicao":"{BANDEIRA_LATERAL_E}==\"SIM\" && ({DIVISAO_BANDEIRA_E}==\"3\")"},
+            {"id":"y7tmls5q8","tipo":"panel-fixed","x":"{X0}-140-{DT}","y":"110-{ABS}","zIndex":10,"w":70,"h":"330+{ABS}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":150,"tempStartY":40,"tempStartW":70,"tempStartH":420,"condicao":"{BANDEIRA_LATERAL_E}==\"SIM\" && ({DIVISAO_BANDEIRA_E}==\"2\" || {DIVISAO_BANDEIRA_E}==\"3\")"},
+            {"id":"7ryxb2in0","tipo":"rect","x":"{X0}+{WP}*{NF}","y":"110-{HTUBO}","zIndex":10,"w":10,"h":"330+{HTUBO}","backgroundColor":"#000000","color":"#ffffff","tempStartX":620,"tempStartY":110,"tempStartW":10,"tempStartH":340,"condicao":"{TUBOS}==\"SIM\" && \"{VARIAÇÃO_TUBOS}\"!=\"APENAS HORIZONTAL\" && {BANDEIRA_LATERAL_D}==\"SIM\""},
+            {"id":"zei0b8soy","tipo":"rect","x":"{X0}-{DT}","y":"110-{HTUBO}","zIndex":10,"w":10,"h":"330+{HTUBO}","backgroundColor":"#000000","color":"#ffffff","tempStartX":290,"tempStartY":40,"tempStartW":10,"tempStartH":340,"condicao":"{TUBOS}==\"SIM\" && \"{VARIAÇÃO_TUBOS}\"!=\"APENAS HORIZONTAL\" && {BANDEIRA_LATERAL_E}==\"SIM\""},
+            {"id":"a1lxj6daj","tipo":"rect","x":"{X0}-{DT}*{ME}-{ME}*{DIVISAO_BANDEIRA_E}*{LTUBO}","y":100,"zIndex":10,"w":"{WP}+{DT}*{ME}+{ME}*{DIVISAO_BANDEIRA_E}*{LTUBO}","h":10,"backgroundColor":"#000000","color":"#ffffff","tempStartX":90,"tempStartY":100,"tempStartW":340,"tempStartH":10,"condicao":"\"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{BANDEIRA_SUP}\" == \"SIM\""},
+            {"id":"w17l3jdrt","tipo":"rect","x":"{X0}+{WP}","y":100,"zIndex":10,"w":"{WP}*({NF}-1)+{DT}+{MD}*{DIVISAO_BANDEIRA_D}*{LTUBO}","h":10,"backgroundColor":"#000000","color":"#ffffff","tempStartX":410,"tempStartY":100,"tempStartW":340,"tempStartH":10,"condicao":"\"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{BANDEIRA_SUP}\" == \"SIM\""},
+            {"id":"gqebm6s4w","tipo":"panel-fixed","x":"{X0}-{ABC}+{LBS}","y":40,"zIndex":10,"w":"{LBS}","h":"70-{DTH}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":380,"tempStartY":40,"tempStartW":70,"tempStartH":60,"condicao":"{BANDEIRA_SUP}==\"SIM\" && {TUBOS}==\"SIM\" && {DIVISAO_BANDEIRA_SUP}>=\"2\" && \"{VARIAÇÃO_TUBOS}\"!=\"APENAS VERTICAL\""},
+            {"id":"u3im89vko","tipo":"panel-fixed","x":"{X0}-{ABC}+{LBS}*2","y":40,"zIndex":10,"w":"{LBS}","h":"70-{DTH}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":460,"tempStartY":40,"tempStartW":70,"tempStartH":60,"condicao":"{BANDEIRA_SUP}==\"SIM\" && {TUBOS}==\"SIM\" && {DIVISAO_BANDEIRA_SUP}>=\"3\" && \"{VARIAÇÃO_TUBOS}\"!=\"APENAS VERTICAL\""},
+            {"id":"uzrs610vb","tipo":"panel-fixed","x":"{X0}-{ABC}+{LBS}*3","y":40,"zIndex":10,"w":"{LBS}","h":"70-{DTH}","backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":540,"tempStartY":40,"tempStartW":80,"tempStartH":60,"condicao":"{BANDEIRA_SUP}==\"SIM\" && {TUBOS}==\"SIM\" && {DIVISAO_BANDEIRA_SUP}==\"4\" && \"{VARIAÇÃO_TUBOS}\"!=\"APENAS VERTICAL\""},
+            {"id":"lsd8xuwum","tipo":"panel-fixed","x":"{X0}+{WP}*{NF}+{DT}","y":40,"zIndex":10,"w":70,"h":60,"backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":630,"tempStartY":40,"tempStartW":80,"tempStartH":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"1\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"j6ebi2rdk","tipo":"panel-fixed","x":"{X0}+{WP}*{NF}+70+{DT}","y":40,"zIndex":10,"w":70,"h":60,"backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":690,"tempStartY":40,"tempStartW":80,"tempStartH":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"2\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"y32zgldnx","tipo":"panel-fixed","x":"{X0}+{WP}*{NF}+140+{DT}","y":40,"zIndex":10,"w":70,"h":60,"backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":770,"tempStartY":40,"tempStartW":80,"tempStartH":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"3\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"osos2ijve","tipo":"panel-fixed","x":"{X0}-70-{DT}","y":40,"zIndex":10,"w":70,"h":60,"backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":230,"tempStartY":40,"tempStartW":80,"tempStartH":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_E}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_E}\" >= \"1\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"cap23lpzh","tipo":"panel-fixed","x":"{X0}-140-{DT}","y":40,"zIndex":10,"w":70,"h":60,"backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":150,"tempStartY":40,"tempStartW":80,"tempStartH":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_E}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_E}\" >= \"2\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"rs7sflcol","tipo":"panel-fixed","x":"{X0}-210-{DT}","y":40,"zIndex":10,"w":70,"h":60,"backgroundColor":"rgba(148, 163, 184, 0.15)","borderColor":"#94a3b8","color":"#fde047","tempStartX":90,"tempStartY":40,"tempStartW":80,"tempStartH":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\" && \"{DIVISAO_BANDEIRA_E}\" >= \"3\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"tipo":"rect","x":"{X0}","y":110,"w":40,"h":15,"zIndex":15,"condicao":"\"{TIPO_KIT}\" != \"BIG\"","backgroundColor":"#000000","id":"m49wzxnfm","tempStartX":250,"tempStartY":110},
+            {"tipo":"rect","x":"{X0}","y":"110 + {HP} - 15","w":40,"h":15,"zIndex":15,"condicao":"\"{TIPO_KIT}\" != \"BIG\"","backgroundColor":"#000000","id":"k92uckcz7","tempStartX":300,"tempStartY":425},
+            {"tipo":"rect","x":"{X0} + {WP}*2 - 40","y":110,"w":40,"h":15,"zIndex":15,"condicao":"\"{TIPO_KIT}\" != \"BIG\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"ee9cn10j7"},
+            {"tipo":"rect","x":"{X0} + {WP}*2 - 40","y":"110 + {HP} - 15","w":40,"h":15,"zIndex":15,"condicao":"\"{TIPO_KIT}\" != \"BIG\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"sgmeduxjo"},
+            {"tipo":"rect","x":"{X0} + 25","y":110,"w":15,"h":40,"zIndex":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\"","backgroundColor":"#000000","id":"5cyqm3ujp","tempStartX":275,"tempStartY":110},
+            {"tipo":"rect","x":"{X0} + 25","y":"110 + {HP} - 40","w":15,"h":40,"zIndex":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\"","backgroundColor":"#000000","id":"dj7z6by22","tempStartX":275,"tempStartY":400},
+            {"tipo":"rect","x":"{X0} + {WP}*2 - 40","y":110,"w":15,"h":40,"zIndex":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"3d1onwd3k","tempStartX":580,"tempStartY":110},
+            {"tipo":"rect","x":"{X0} + {WP}*2 - 40","y":"110 + {HP} - 40","w":15,"h":40,"zIndex":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"fni7xqipi","tempStartX":580,"tempStartY":400},
+            {"tipo":"rect","x":"{X0} + {WP} - 15","y":"110 + {HP}/2 - 17.5","w":15,"h":35,"zIndex":15,"condicao":"\"{FECHADURA}\" != \"SEM FECHADURA\"","backgroundColor":"#000000","id":"0cjyozvb1","tempStartX":445,"tempStartY":258},
+            {"tipo":"rect","x":"{X0} + {WP} ","y":"110 + {HP}/2 - 17.5","w":15,"h":35,"zIndex":15,"condicao":"\"{FECHADURA}\" != \"SEM FECHADURA\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"8ll07jvq7","tempStartX":410,"tempStartY":258},
+            {"id":"qvcupc2o9","tipo":"rect","x":"{X0} + {WP} - 30","y":265,"zIndex":10,"w":20,"h":5,"backgroundColor":"#000000","color":"#ffffff","tempStartX":380,"tempStartY":265,"tempStartW":15,"tempStartH":3,"condicao":"\"{FECHADURA}\" == \"MAÇANETA\" "},
+            {"tipo":"circle","x":"{X0} + {WP} + 5","y":115,"w":10,"h":10,"zIndex":15,"condicao":"\"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"q5qhkbyw0","tempStartX":415,"tempStartY":115},
+            {"tipo":"circle","x":"{X0} + {WP} + 5","y":"110 + {HP} - 15","w":10,"h":10,"zIndex":15,"condicao":"\"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"hnyghs8id","tempStartX":415,"tempStartY":425},
+            {"tipo":"circle","x":"{X0}+{WP}-15","y":"110 + {HP} - 15","w":10,"h":10,"zIndex":15,"condicao":"\"{TRINCO}\" == \"SIM\"","backgroundColor":"#000000","id":"n6zfmoaa8","tempStartX":395,"tempStartY":425},
+            {"tipo":"circle","x":"{X0} + {WP} - 45","y":"110 + {HP}/2","w":10,"h":10,"zIndex":15,"condicao":"\"{PUXADOR}\" == \"SIMPLES\"","backgroundColor":"#000000","id":"p8emyp1ym","tempStartX":415,"tempStartY":275},
+            {"tipo":"circle","x":"{X0} + {WP} + 35","y":"110 + {HP}/2","w":10,"h":10,"zIndex":15,"condicao":"\"{PUXADOR}\" == \"SIMPLES\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"j2rsvsqbo","tempStartX":435,"tempStartY":275},
+            {"tipo":"circle","x":"{X0} + {WP} - 45","y":"110 + {HP}/2 -50","w":10,"h":10,"zIndex":15,"condicao":"\"{PUXADOR}\" == \"PUXADOR H\"","backgroundColor":"#000000","id":"yp0avyu9d","tempStartX":365,"tempStartY":125},
+            {"tipo":"circle","x":"{X0} + {WP} -45","y":"110 + {HP}/2 +50","w":10,"h":10,"zIndex":15,"condicao":"\"{PUXADOR}\" == \"PUXADOR H\"","backgroundColor":"#000000","id":"64owju9q8","tempStartX":415,"tempStartY":325},
+            {"tipo":"dim-v","x":"{X0} + {WP} -50","y":330,"w":10,"h":110,"zIndex":15,"texto":"","condicao":"\"{PUXADOR}\" == \"PUXADOR H\"","color":"#38bdf8","borderColor":"#38bdf8","fontSize":5,"id":"gqpuk3v9j","tempStartX":410,"tempStartY":330,"invertCota":false},
+            {"tipo":"circle","x":"{X0} + {WP} + 35","y":"110 + {HP}/2 - 50","w":10,"h":10,"zIndex":15,"condicao":"\"{PUXADOR}\" == \"PUXADOR H\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"lh0enp0om","tempStartX":445,"tempStartY":125},
+            {"tipo":"circle","x":"{X0} + {WP} + 35","y":"110 + {HP}/2 + 50","w":10,"h":10,"zIndex":15,"condicao":"\"{PUXADOR}\" == \"PUXADOR H\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","backgroundColor":"#000000","id":"iru85ytui","tempStartX":495,"tempStartY":325},
+            {"tipo":"dim-v","x":"{X0} + {WP} + 40","y":330,"w":10,"h":110,"zIndex":15,"texto":"","condicao":"\"{PUXADOR}\" == \"PUXADOR H\" && \"{MODELO_BASE}\" == \"2 FOLHAS\"","color":"#38bdf8","borderColor":"#38bdf8","fontSize":5,"id":"3dk2djofm","tempStartX":500,"tempStartY":330,"invertCota":true},
+            {"id":"ofatsxxtb","tipo":"dim-h","x":"{X0}","y":150,"zIndex":10,"w":35,"h":10,"texto":"","color":"#38bdf8","tempStartX":250,"tempStartY":150,"invertCota":true,"tempStartW":30,"tempStartH":10,"condicao":"\"{TIPO_KIT}\" == \"BIG\""},
+            {"id":"o3pnlth2r","tipo":"dim-h","x":"{X0} + {WP}*2 -35","y":150,"zIndex":10,"w":35,"h":10,"texto":"","color":"#38bdf8","tempStartX":580,"tempStartY":150,"invertCota":true,"tempStartW":30,"tempStartH":10,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"72hozkv9v","tipo":"dim-h","x":"{X0} + {WP}*2 - 40","y":390,"zIndex":10,"w":35,"h":10,"texto":"","color":"#38bdf8","tempStartX":535,"tempStartY":390,"invertCota":false,"tempStartW":30,"tempStartH":10,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"4emab0uct","tipo":"dim-h","x":"{X0}","y":390,"zIndex":10,"w":35,"h":10,"texto":"","color":"#38bdf8","tempStartX":250,"tempStartY":390,"invertCota":false,"tempStartW":30,"tempStartH":10,"condicao":"\"{TIPO_KIT}\" == \"BIG\""},
+            {"tipo":"rect","x":"{X0} + {WP} ","y":"110 + {HP}/2 - 17.5","w":15,"h":35,"zIndex":15,"condicao":"\"{FECHADURA}\" != \"SEM FECHADURA\" && \"{TUBOS}\" == \"NÃO\" && \"{MODELO_BASE}\" == \"1 FOLHA\" && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"","backgroundColor":"#000000","id":"2ypflvy1g","tempStartX":460,"tempStartY":258},
+            {"id":"u2a3eqcdh","tipo":"rect","x":"{X0}-{DT}","y":100,"zIndex":10,"w":10,"h":30,"backgroundColor":"#000000","color":"#ffffff","tempStartX":290,"tempStartY":100,"tempStartW":10,"tempStartH":20,"condicao":"\"{BANDEIRA_SUP}\"==\"SIM\"  && \"{TUBOS}\"==\"NÃO\"  && \"{TIPO_KIT}\"==\"PADRÃO\"  && \"{BANDEIRA_LATERAL_E}\"==\"SIM\""},
+            {"id":"t1qzpt3xx","tipo":"rect","x":"{X0}-{DT}*{ME}","y":100,"zIndex":10,"w":30,"h":10,"backgroundColor":"#000000","color":"#ffffff","tempStartX":290,"tempStartY":100,"tempStartW":40,"tempStartH":10,"condicao":"( \"{TUBOS}\" == \"NÃO\" && \"{BANDEIRA_SUP}\" == \"SIM\" && \"{TIPO_KIT}\" == \"PADRÃO\" ) || ( \"{TUBOS}\" == \"SIM\" && \"{BANDEIRA_SUP}\" == \"SIM\" && \"{TIPO_KIT}\" == \"PADRÃO\" && \"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" )"},
+            {"id":"us6858hc8","tipo":"rect","x":"{X0}+{WP}*{NF}-20","y":100,"zIndex":10,"w":30,"h":10,"backgroundColor":"#000000","color":"#ffffff","tempStartX":540,"tempStartY":100,"tempStartW":40,"tempStartH":10,"condicao":"( \"{TUBOS}\" == \"NÃO\" && \"{BANDEIRA_SUP}\" == \"SIM\" && \"{TIPO_KIT}\" == \"PADRÃO\" && \"{MODELO_BASE}\"== \"2 FOLHAS\") || ( \"{TUBOS}\" == \"SIM\" && \"{BANDEIRA_SUP}\" == \"SIM\" && \"{TIPO_KIT}\" == \"PADRÃO\" && \"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" && \"{MODELO_BASE}\"== \"2 FOLHAS\")"},
+            {"id":"7dsjxw8bm","tipo":"rect","x":"{X0}+{WP}*{NF}","y":100,"zIndex":10,"w":10,"h":30,"backgroundColor":"#000000","color":"#ffffff","tempStartX":570,"tempStartY":100,"tempStartW":10,"tempStartH":20,"condicao":"\"{BANDEIRA_SUP}\"==\"SIM\"  && \"{TUBOS}\"==\"NÃO\"  && \"{TIPO_KIT}\"==\"PADRÃO\"  && \"{BANDEIRA_LATERAL_D}\"==\"SIM\" && \"{MODELO_BASE}\"== \"2 FOLHAS\""},
+            {"tipo":"circle","x":"{X0} + {WP} + 5","y":95,"w":10,"h":10,"zIndex":15,"condicao":"( \"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{TUBOS}\" == \"NÃO\" && \"{BANDEIRA_SUP}\" == \"SIM\" ) || ( \"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{TUBOS}\" == \"SIM\" && \"{BANDEIRA_SUP}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" )","backgroundColor":"#000000","id":"ud3z1zief","tempStartX":415,"tempStartY":95},
+            {"id":"nexwyyj26","tipo":"text","x":"{X0} + 60","y":420,"zIndex":10,"w":60,"h":15,"texto":"{L_PORTA}","color":"#ffffff","fontSize":14,"tempStartX":350,"tempStartY":420},
+            {"id":"nfhcmkxhr","tipo":"text","x":"{X0} + {WP} + 40","y":420,"zIndex":10,"w":60,"h":15,"texto":"{L_PORTA}","color":"#ffffff","fontSize":14,"tempStartX":500,"tempStartY":420,"condicao":"\"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"xwcxk35a3","tipo":"text","x":"{X0}+{WP}*{NF}+{DT}","y":420,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_D}","color":"#ffffff","fontSize":14,"tempStartX":580,"tempStartY":420,"condicao":"( \"{DIVISAO_BANDEIRA_D}\" == \"1\" && \"{BANDEIRA_LATERAL_D}\" == \"SIM\" ) || ( \"{DIVISAO_BANDEIRA_D}\" == \"2\" && \"{BANDEIRA_LATERAL_D}\" == \"SIM\" ) || ( \"{DIVISAO_BANDEIRA_D}\" == \"3\" && \"{BANDEIRA_LATERAL_D}\" == \"SIM\" )"},
+            {"id":"djgdcehlr","tipo":"text","x":"{X0}-20","y":260,"zIndex":10,"w":60,"h":15,"texto":"{H_PORTA}","color":"#ffffff","fontSize":14,"tempStartX":280,"tempStartY":260,"rotation":270},
+            {"id":"zhajc3vf3","tipo":"text","x":"{X0}+{WP}*2-40","y":260,"zIndex":10,"w":60,"h":15,"texto":"{H_PORTA}","color":"#ffffff","fontSize":14,"tempStartX":530,"tempStartY":260,"rotation":270,"condicao":"\"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"5933zkrwt","tipo":"text","x":"{X0}+{WP}*{NF}+70+{DT}","y":420,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_D}","color":"#ffffff","fontSize":14,"tempStartX":480,"tempStartY":420,"condicao":"( \"{DIVISAO_BANDEIRA_D}\" == \"2\" ) || ( \"{DIVISAO_BANDEIRA_D}\" == \"3\" )"},
+            {"id":"ktdubtsjz","tipo":"text","x":"{X0}+{WP}*{NF}+140+{DT}","y":420,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_D}","color":"#ffffff","fontSize":14,"tempStartX":550,"tempStartY":420,"condicao":"\"{DIVISAO_BANDEIRA_D}\" == \"3\""},
+            {"id":"2v73z3suh","tipo":"text","x":"{X0}-70-{DT}","y":420,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_E}","color":"#ffffff","fontSize":14,"tempStartX":180,"tempStartY":420,"condicao":"( \"{DIVISAO_BANDEIRA_E}\" == \"1\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\" ) || ( \"{DIVISAO_BANDEIRA_E}\" == \"2\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\" ) || ( \"{DIVISAO_BANDEIRA_E}\" == \"3\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\" )"},
+            {"id":"1r8uuxax6","tipo":"text","x":"{X0}-140-{DT}","y":420,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_E}","color":"#ffffff","fontSize":14,"tempStartX":100,"tempStartY":420,"condicao":"( \"{DIVISAO_BANDEIRA_E}\" == \"2\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\" ) || ( \"{DIVISAO_BANDEIRA_E}\" == \"3\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\" )"},
+            {"id":"m6fnf41x5","tipo":"text","x":"{X0}-210-{DT}","y":420,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_E}","color":"#ffffff","fontSize":14,"tempStartX":30,"tempStartY":420,"condicao":"\"{DIVISAO_BANDEIRA_E}\" == \"3\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\""},
+            {"id":"wfx00r2jy","tipo":"text","x":"{X0}-70-{DT}","y":80,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_E}","color":"#ffffff","fontSize":14,"tempStartX":220,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_E}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_E}\" >= \"1\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\"","tempStartW":70,"tempStartH":15},
+            {"id":"20cn1ax6c","tipo":"text","x":"{X0}-140-{DT}","y":80,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_E}","color":"#ffffff","fontSize":14,"tempStartX":150,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_E}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_E}\" >= \"2\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"j8laxlt98","tipo":"text","x":"{X0}-210-{DT}","y":80,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_E}","color":"#ffffff","fontSize":14,"tempStartX":80,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\" && \"{DIVISAO_BANDEIRA_E}\" >= \"3\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"3jd2qy9nr","tipo":"text","x":"{X0}+{WP}*{NF}+{DT}","y":80,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_D}","color":"#ffffff","fontSize":14,"tempStartX":630,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"1\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"7fykopmbl","tipo":"text","x":"{X0}+{WP}*{NF}+70+{DT}","y":80,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_D}","color":"#ffffff","fontSize":14,"tempStartX":700,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"2\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"wwfa2mn3s","tipo":"text","x":"{X0}+{WP}*{NF}+140+{DT}","y":80,"zIndex":10,"w":70,"h":15,"texto":"{LF_FIXO_D}","color":"#ffffff","fontSize":14,"tempStartX":770,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"3\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\""},
+            {"id":"3glu2r397","tipo":"dim-h","x":"{X0}","y":450,"zIndex":10,"w":"{WP}*{NF}","h":10,"texto":"","color":"#f43f5e","tempStartX":250,"tempStartY":450,"tempStartW":260,"tempStartH":10,"invertCota":true},
+            {"id":"e1sbzziaq","tipo":"dim-h","x":"{X0}-70*({DIVISAO_BANDEIRA_E})-{DT}","y":450,"zIndex":10,"w":"70*{DIVISAO_BANDEIRA_E}","h":10,"texto":"","color":"#f43f5e","tempStartX":220,"tempStartY":450,"invertCota":true,"tempStartW":200,"tempStartH":10,"condicao":"\"{BANDEIRA_LATERAL_E}\" == \"SIM\""},
+            {"id":"2wyfnsd0i","tipo":"dim-h","x":"{X0}+{WP}*{NF}+{DT}","y":450,"zIndex":10,"w":"70*{DIVISAO_BANDEIRA_D}","h":10,"texto":"","color":"#f43f5e","tempStartX":470,"tempStartY":450,"invertCota":true,"tempStartW":200,"tempStartH":10,"condicao":"\"{BANDEIRA_LATERAL_D}\" == \"SIM\""},
+            {"id":"f1p38lc37","tipo":"dim-h","x":"{X0}-70*({DIVISAO_BANDEIRA_E}*{ME})-{DT}*{ME}","y":480,"zIndex":10,"w":"70*{DIVISAO_BANDEIRA_E}*{ME}+70*{DIVISAO_BANDEIRA_D}*{MD}+{WP}*{NF}+{DT}*{MD}+{DT}*{ME}","h":10,"texto":"","color":"#f43f5e","tempStartX":230,"tempStartY":480,"tempStartW":720,"tempStartH":10,"invertCota":true,"condicao":"( \"{BANDEIRA_LATERAL_D}\" == \"SIM\" ) || ( \"{BANDEIRA_LATERAL_E}\" == \"SIM\" )"},
+            {"id":"khb6h8a7m","tipo":"text","x":"{X0}-70*({DIVISAO_BANDEIRA_E})-{DT}+(70*{DIVISAO_BANDEIRA_E}+70*{DIVISAO_BANDEIRA_D}+{WP}*{NF}+{DT}*{MD}+{DT}*{ME})/2-35","y":490,"zIndex":10,"w":60,"h":15,"texto":"VÃO TOTAL - {L}","color":"#f43f5e","fontSize":14,"tempStartX":345,"tempStartY":490,"condicao":"( \"{BANDEIRA_LATERAL_D}\" == \"SIM\" ) || ( \"{BANDEIRA_LATERAL_E}\" == \"SIM\" )"},
+            {"id":"qr4v0jec2","tipo":"text","x":"{X0}+{WP}*{NF}/2-35","y":460,"zIndex":10,"w":60,"h":15,"texto":"VAO PORTA -{LV_PORTA}","color":"#f43f5e","fontSize":14,"tempStartX":380,"tempStartY":460},
+            {"id":"rmxhc6z09","tipo":"text","x":"{X0}-70*({DIVISAO_BANDEIRA_E})+(70*{DIVISAO_BANDEIRA_E}/2-35)-{DT}","y":460,"zIndex":10,"w":70,"h":15,"texto":"VÃO -  {VAO_BANDEIRA_E}","color":"#f43f5e","fontSize":14,"tempStartX":220,"tempStartY":460,"condicao":"\"{BANDEIRA_LATERAL_E}\" == \"SIM\""},
+            {"id":"hirk2wb8k","tipo":"text","x":"{X0}+{WP}*{NF}+70*{DIVISAO_BANDEIRA_D}/2-35+{DT}","y":460,"zIndex":10,"w":60,"h":15,"texto":"VÃO -  {VAO_BANDEIRA_D}","color":"#f43f5e","fontSize":14,"tempStartX":470,"tempStartY":460,"condicao":"\"{BANDEIRA_LATERAL_D}\" == \"SIM\""},
+            {"id":"42woddjuu","tipo":"text","x":"{X0}-{DT2}+{LBS}/2-35","y":40,"zIndex":10,"w":70,"h":15,"texto":"{BAND_SUP_UNICA}","color":"#ffffff","fontSize":14,"tempStartX":425,"tempStartY":40,"condicao":"( \"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"NÃO\" ) || ( \"{BANDEIRA_SUP}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" == \"APENAS VERTICAL\" && \"{TUBOS}\" == \"SIM\" )"},
+            {"id":"rm1rfc1mx","tipo":"text","x":"{X0}-{ABC}+{LBS}/2-35","y":80,"zIndex":10,"w":70,"h":15,"texto":"{BAND_SUP_DIV}","color":"#ffffff","fontSize":14,"tempStartX":305,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\""},
+            {"id":"bf0z1je4t","tipo":"text","x":"{X0}-{ABC}+{LBS}+{LBS}/2-35","y":80,"zIndex":10,"w":70,"h":15,"texto":"{BAND_SUP_DIV}","color":"#ffffff","fontSize":14,"tempStartX":385,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{DIVISAO_BANDEIRA_SUP}\" >= \"2\""},
+            {"id":"jwoxmoiiy","tipo":"text","x":"{X0}-{ABC}+{LBS}*2+{LBS}/2-35","y":80,"zIndex":10,"w":70,"h":15,"texto":"{BAND_SUP_DIV}","color":"#ffffff","fontSize":14,"tempStartX":465,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{DIVISAO_BANDEIRA_SUP}\" >= \"3\""},
+            {"id":"rar2pif9i","tipo":"text","x":"{X0}-{ABC}+{LBS}*3+{LBS}/2-35","y":80,"zIndex":10,"w":70,"h":15,"texto":"{BAND_SUP_DIV}","color":"#ffffff","fontSize":14,"tempStartX":545,"tempStartY":80,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{DIVISAO_BANDEIRA_SUP}\" >= \"4\""},
+            {"id":"j9wn3apcz","tipo":"text","x":"{X0}-210-{DT}-20","y":250,"zIndex":10,"w":60,"h":15,"texto":"{HFIXO_1}","color":"#ffffff","fontSize":14,"rotation":270,"tempStartX":60,"tempStartY":250,"condicao":"{BANDEIRA_LATERAL_E}==\"SIM\" && ({DIVISAO_BANDEIRA_E}==\"3\")"},
+            {"id":"y881c1ltm","tipo":"dim-v","x":"{X0}-70*({DIVISAO_BANDEIRA_E}*{ME})-{DT}*{ME}-20","y":110,"zIndex":10,"w":10,"h":330,"texto":"","color":"#f43f5e","tempStartX":60,"tempStartY":110},
+            {"id":"p8gz7boeh","tipo":"dim-v","x":"{X0}-70*({DIVISAO_BANDEIRA_E}*{ME})-{DT}*{ME}-60","y":40,"zIndex":10,"w":10,"h":400,"texto":"","color":"#f43f5e","tempStartX":30,"tempStartY":40,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\""},
+            {"id":"gipaz4fqd","tipo":"dim-v","x":"{X0}-70*({DIVISAO_BANDEIRA_E}*{ME})-{DT}*{ME}-20","y":40,"zIndex":10,"w":10,"h":"70-{DTH}","texto":"","color":"#f43f5e","tempStartX":280,"tempStartY":40,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\""},
+            {"id":"f0ojo80ya","tipo":"text","x":"{X0}-70*({DIVISAO_BANDEIRA_E}*{ME})-{DT}*{ME}-60","y":"110-{ABS}+(330+{ABS})/2-30","zIndex":10,"w":60,"h":15,"texto":"VÃO - {HV_PORTA}","color":"#f43f5e","fontSize":14,"rotation":270,"tempStartX":20,"tempStartY":210},
+            {"id":"7ghi8yoz7","tipo":"text","x":"{X0}-70*({DIVISAO_BANDEIRA_E}*{ME})-{DT}*{ME}-60","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HV_BAND_SUP}","color":"#f43f5e","fontSize":14,"rotation":270,"tempStartX":240,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\""},
+            {"id":"etv9nwz58","tipo":"text","x":"{X0}-70*({DIVISAO_BANDEIRA_E}*{ME})-{DT}*{ME}-100","y":220,"zIndex":10,"w":60,"h":15,"texto":"VÃO - {H}","color":"#f43f5e","fontSize":14,"rotation":270,"tempStartX":-10,"tempStartY":220,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\""},
+            {"id":"t1kuc6d82","tipo":"text","x":"{X0}-140-{DT}-20","y":250,"zIndex":10,"w":60,"h":15,"texto":"{HFIXO_1}","color":"#ffffff","fontSize":14,"rotation":270,"tempStartX":130,"tempStartY":250,"condicao":"{BANDEIRA_LATERAL_E}==\"SIM\" && ({DIVISAO_BANDEIRA_E}==\"2\" || {DIVISAO_BANDEIRA_E}==\"3\")"},
+            {"id":"b7gxfxc3s","tipo":"text","x":"{X0}-70-{DT}-20","y":250,"zIndex":10,"w":60,"h":15,"texto":"{HFIXO_1}","color":"#ffffff","fontSize":14,"rotation":270,"tempStartX":200,"tempStartY":250,"condicao":"{BANDEIRA_LATERAL_E}==\"SIM\""},
+            {"id":"3avt4j0dk","tipo":"text","x":"{X0}-210-{DT}-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":60,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{BANDEIRA_LATERAL_E}\" == \"SIM\" && \"{DIVISAO_BANDEIRA_E}\" >= \"3\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\"","rotation":270,"tempStartW":70,"tempStartH":15},
+            {"id":"g1xg22wob","tipo":"text","x":"{X0}-140-{DT}-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":130,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_E}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_E}\" >= \"2\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\"","rotation":270},
+            {"id":"uxcytn4b3","tipo":"text","x":"{X0}-70-{DT}-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":200,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_E}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_E}\" >= \"1\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\"","tempStartW":70,"tempStartH":15,"rotation":270},
+            {"id":"0mq7bp20j","tipo":"text","x":"{X0}-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":280,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"","rotation":270},
+            {"id":"ycc7r7qvi","tipo":"text","x":"{X0}-{ABC}+{LBS}-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":430,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{DIVISAO_BANDEIRA_SUP}\" >= \"2\"","rotation":270},
+            {"id":"bz25vsoey","tipo":"text","x":"{X0}-{ABC}+{LBS}*2-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":440,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{DIVISAO_BANDEIRA_SUP}\" >= \"3\"","rotation":270},
+            {"id":"8es7yamju","tipo":"text","x":"{X0}-{ABC}+{LBS}*3-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":520,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\" && \"{TUBOS}\" == \"SIM\" && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\" && \"{DIVISAO_BANDEIRA_SUP}\" >= \"4\"","rotation":270},
+            {"id":"267wxr5qc","tipo":"text","x":"{X0}+{WP}*{NF}+{DT}-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":610,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"1\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\"","rotation":270},
+            {"id":"gnt4qkdow","tipo":"text","x":"{X0}+{WP}*{NF}+70+{DT}-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":670,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"2\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\"","rotation":270},
+            {"id":"s9q0kv0ob","tipo":"text","x":"{X0}+{WP}*{NF}+140+{DT}-20","y":60,"zIndex":10,"w":60,"h":15,"texto":"{HBAND}","color":"#ffffff","fontSize":14,"tempStartX":750,"tempStartY":60,"condicao":"\"{BANDEIRA_SUP}\" == \"SIM\"  && \"{BANDEIRA_LATERAL_D}\" == \"SIM\"  && \"{DIVISAO_BANDEIRA_D}\" >= \"3\"  && \"{TUBOS}\" == \"SIM\"  && \"{VARIAÇÃO_TUBOS}\" != \"APENAS VERTICAL\"  && \"{VARIAÇÃO_TUBOS}\" != \"VERTICAL COMPLETO + HORIZONTAL\"","rotation":270},
+            {"id":"fn7d8g4h7","tipo":"text","x":300,"y":130,"zIndex":10,"w":30,"h":15,"texto":"1101","color":"#ffffff","fontSize":14,"tempStartX":300,"tempStartY":125,"tempStartW":60,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"PADRÃO\""},
+            {"id":"f3y8jt93g","tipo":"text","x":590,"y":125,"zIndex":10,"w":30,"h":15,"texto":"1101","color":"#ffffff","fontSize":14,"tempStartX":590,"tempStartY":130,"tempStartW":60,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"PADRÃO\" && \"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"63w967i5f","tipo":"text","x":300,"y":410,"zIndex":10,"w":30,"h":15,"texto":"1103","color":"#ffffff","fontSize":14,"tempStartX":300,"tempStartY":410,"tempStartW":60,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"PADRÃO\""},
+            {"id":"ajcpueyaw","tipo":"text","x":590,"y":410,"zIndex":10,"w":30,"h":15,"texto":"1103","color":"#ffffff","fontSize":14,"tempStartX":590,"tempStartY":410,"tempStartW":60,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"PADRÃO\" && \"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"bovfm5lpb","tipo":"text","x":340,"y":140,"zIndex":10,"w":40,"h":15,"texto":"1101R","color":"#ffffff","fontSize":14,"tempStartX":340,"tempStartY":140,"tempStartW":30,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{TIPO_KIT_BIG}\" == \"GLASPEÇAS\""},
+            {"id":"4k6x19qe3","tipo":"text","x":340,"y":400,"zIndex":10,"w":40,"h":15,"texto":"1101R","color":"#ffffff","fontSize":14,"tempStartX":350,"tempStartY":400,"tempStartW":30,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{TIPO_KIT_BIG}\" == \"GLASPEÇAS\""},
+            {"id":"9zkqyanua","tipo":"text","x":340,"y":140,"zIndex":10,"w":50,"h":15,"texto":"BIG-TQ","color":"#ffffff","fontSize":14,"tempStartX":350,"tempStartY":140,"tempStartW":40,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{TIPO_KIT_BIG}\" == \"TERMOQUIMICA\""},
+            {"id":"qqdegnnja","tipo":"text","x":340,"y":400,"zIndex":10,"w":50,"h":15,"texto":"BIG-TQ","color":"#ffffff","fontSize":14,"tempStartX":350,"tempStartY":400,"tempStartW":40,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{TIPO_KIT_BIG}\" == \"TERMOQUIMICA\""},
+            {"id":"3nsw0rno9","tipo":"text","x":530,"y":400,"zIndex":10,"w":50,"h":15,"texto":"BIG-TQ","color":"#ffffff","fontSize":14,"tempStartX":540,"tempStartY":400,"tempStartW":40,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{TIPO_KIT_BIG}\" == \"TERMOQUIMICA\" && \"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"tiqv5x0j9","tipo":"text","x":530,"y":140,"zIndex":10,"w":50,"h":15,"texto":"BIG-TQ","color":"#ffffff","fontSize":14,"tempStartX":540,"tempStartY":140,"tempStartW":40,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{TIPO_KIT_BIG}\" == \"TERMOQUIMICA\" && \"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"8vhsbrrot","tipo":"text","x":540,"y":140,"zIndex":10,"w":40,"h":15,"texto":"1101R","color":"#ffffff","fontSize":14,"tempStartX":360,"tempStartY":160,"tempStartW":30,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{TIPO_KIT_BIG}\" == \"GLASPEÇAS\" && \"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"h4ekhn54j","tipo":"text","x":540,"y":400,"zIndex":10,"w":40,"h":15,"texto":"1101R","color":"#ffffff","fontSize":14,"tempStartX":560,"tempStartY":160,"tempStartW":30,"tempStartH":15,"condicao":"\"{TIPO_KIT}\" == \"BIG\" && \"{TIPO_KIT_BIG}\" == \"GLASPEÇAS\" && \"{MODELO_BASE}\" == \"2 FOLHAS\""},
+            {"id":"oghw3s4er","tipo":"text","x":400,"y":270,"zIndex":10,"w":30,"h":15,"texto":"{ENTRE_FUROS}","color":"#ffffff","fontSize":14,"tempStartX":400,"tempStartY":270,"tempStartW":60,"tempStartH":15,"condicao":"\"{PUXADOR}\" == \"PUXADOR H\""},
+            {"id":"xb7u03qm4","tipo":"text","x":490,"y":270,"zIndex":10,"w":30,"h":15,"texto":"{ENTRE_FUROS}","color":"#ffffff","fontSize":14,"tempStartX":490,"tempStartY":270,"tempStartW":60,"tempStartH":15,"condicao":"\"{MODELO_BASE}\" == \"2 FOLHAS\" && \"{PUXADOR}\" == \"PUXADOR H\""},
+            {"id":"xo57ks502","tipo":"bounding-box","x":"{X0}-70*({DIVISAO_BANDEIRA_E}*{ME})-{DT}*{ME}-80","y":"100-{AAPH}","zIndex":0,"w":"70*{DIVISAO_BANDEIRA_E}*{ME}+70*{DIVISAO_BANDEIRA_D}*{MD}+{WP}*{NF}+{DT}*{MD}+{DT}*{ME}+100","h":"410+{AAPH}","texto":"ÁREA DE CORTE","tempStartX":220,"tempStartY":30,"tempStartW":260,"tempStartH":480}
         ]
     }
 }
